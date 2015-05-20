@@ -9,11 +9,25 @@
 /* Begin PBXBuildFile section */
 		1639DAC61B0A5E3D00DC3217 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639DAC51B0A5E3D00DC3217 /* AppDelegate.swift */; };
 		1639DAC91B0A5E3D00DC3217 /* Budgie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1639DAC71B0A5E3D00DC3217 /* Budgie.xcdatamodeld */; };
-		1639DACB1B0A5E3D00DC3217 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639DACA1B0A5E3D00DC3217 /* ViewController.swift */; };
+		1639DACB1B0A5E3D00DC3217 /* BudgieLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639DACA1B0A5E3D00DC3217 /* BudgieLoginViewController.swift */; };
 		1639DACE1B0A5E3D00DC3217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1639DACC1B0A5E3D00DC3217 /* Main.storyboard */; };
 		1639DAD01B0A5E3D00DC3217 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1639DACF1B0A5E3D00DC3217 /* Images.xcassets */; };
 		1639DAD31B0A5E3D00DC3217 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1639DAD11B0A5E3D00DC3217 /* LaunchScreen.xib */; };
 		1639DADF1B0A5E3D00DC3217 /* BudgieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639DADE1B0A5E3D00DC3217 /* BudgieTests.swift */; };
+		16B13F791B0BA2A500427476 /* custom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16B13F781B0BA2A500427476 /* custom.plist */; };
+		16B13F7D1B0BB01000427476 /* BudgieHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */; };
+		16B13F7F1B0BC0D000427476 /* BudgieTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F7E1B0BC0D000427476 /* BudgieTweetCell.swift */; };
+		16B13F811B0BC24A00427476 /* BudgieReTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F801B0BC24A00427476 /* BudgieReTweetCell.swift */; };
+		16B13F831B0BC2EE00427476 /* BudgieProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F821B0BC2EE00427476 /* BudgieProfileViewController.swift */; };
+		16B13F851B0C310100427476 /* BudgieTweetDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F841B0C310100427476 /* BudgieTweetDetailsViewController.swift */; };
+		16B13F871B0C357400427476 /* BudgieDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F861B0C357400427476 /* BudgieDetailsHeaderCell.swift */; };
+		16B13F8E1B0C365E00427476 /* BudgieDetailsEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F8D1B0C365E00427476 /* BudgieDetailsEmptyCell.swift */; };
+		16B13F901B0C368100427476 /* BudgieDetailsCountersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F8F1B0C368100427476 /* BudgieDetailsCountersCell.swift */; };
+		16B13F921B0C369800427476 /* BudgieDetailsActionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F911B0C369800427476 /* BudgieDetailsActionsCell.swift */; };
+		16B591281B0A61C900C63812 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B591271B0A61C900C63812 /* TwitterClient.swift */; };
+		16B5912A1B0A814B00C63812 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B591291B0A814B00C63812 /* User.swift */; };
+		16B5912C1B0A815900C63812 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B5912B1B0A815900C63812 /* Tweet.swift */; };
+		261238C5F3D298B84FA22666 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC63E5ED735F8DAD04838549 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +45,30 @@
 		1639DAC41B0A5E3D00DC3217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1639DAC51B0A5E3D00DC3217 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1639DAC81B0A5E3D00DC3217 /* Budgie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Budgie.xcdatamodel; sourceTree = "<group>"; };
-		1639DACA1B0A5E3D00DC3217 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1639DACA1B0A5E3D00DC3217 /* BudgieLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgieLoginViewController.swift; sourceTree = "<group>"; };
 		1639DACD1B0A5E3D00DC3217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1639DACF1B0A5E3D00DC3217 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1639DAD21B0A5E3D00DC3217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1639DAD81B0A5E3D00DC3217 /* BudgieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1639DADD1B0A5E3D00DC3217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1639DADE1B0A5E3D00DC3217 /* BudgieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgieTests.swift; sourceTree = "<group>"; };
+		16B13F781B0BA2A500427476 /* custom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = custom.plist; sourceTree = "<group>"; };
+		16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieHomeViewController.swift; sourceTree = "<group>"; };
+		16B13F7E1B0BC0D000427476 /* BudgieTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieTweetCell.swift; sourceTree = "<group>"; };
+		16B13F801B0BC24A00427476 /* BudgieReTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieReTweetCell.swift; sourceTree = "<group>"; };
+		16B13F821B0BC2EE00427476 /* BudgieProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieProfileViewController.swift; sourceTree = "<group>"; };
+		16B13F841B0C310100427476 /* BudgieTweetDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieTweetDetailsViewController.swift; sourceTree = "<group>"; };
+		16B13F861B0C357400427476 /* BudgieDetailsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieDetailsHeaderCell.swift; sourceTree = "<group>"; };
+		16B13F8D1B0C365E00427476 /* BudgieDetailsEmptyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieDetailsEmptyCell.swift; sourceTree = "<group>"; };
+		16B13F8F1B0C368100427476 /* BudgieDetailsCountersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieDetailsCountersCell.swift; sourceTree = "<group>"; };
+		16B13F911B0C369800427476 /* BudgieDetailsActionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieDetailsActionsCell.swift; sourceTree = "<group>"; };
+		16B591221B0A5F6700C63812 /* Budgie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Budgie-Bridging-Header.h"; sourceTree = "<group>"; };
+		16B591271B0A61C900C63812 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
+		16B591291B0A814B00C63812 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		16B5912B1B0A815900C63812 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		DC63E5ED735F8DAD04838549 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE3E614F0A98C0958DEEE7C6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FD73C2BA77F7D72E7AFEA167 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				261238C5F3D298B84FA22666 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +96,8 @@
 				1639DAC21B0A5E3D00DC3217 /* Budgie */,
 				1639DADB1B0A5E3D00DC3217 /* BudgieTests */,
 				1639DAC11B0A5E3D00DC3217 /* Products */,
+				1C1F19165401510DE9EC5E3F /* Pods */,
+				9C5B71FDE156512AAA8C34DD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,12 +114,16 @@
 			isa = PBXGroup;
 			children = (
 				1639DAC51B0A5E3D00DC3217 /* AppDelegate.swift */,
-				1639DACA1B0A5E3D00DC3217 /* ViewController.swift */,
+				16B591251B0A617100C63812 /* API */,
+				16B591261B0A617E00C63812 /* Models */,
+				16B13F7B1B0BA4B000427476 /* Views */,
+				16B13F7A1B0BA48A00427476 /* ViewControllers */,
 				1639DACC1B0A5E3D00DC3217 /* Main.storyboard */,
 				1639DACF1B0A5E3D00DC3217 /* Images.xcassets */,
 				1639DAD11B0A5E3D00DC3217 /* LaunchScreen.xib */,
 				1639DAC71B0A5E3D00DC3217 /* Budgie.xcdatamodeld */,
 				1639DAC31B0A5E3D00DC3217 /* Supporting Files */,
+				16B591221B0A5F6700C63812 /* Budgie-Bridging-Header.h */,
 			);
 			path = Budgie;
 			sourceTree = "<group>";
@@ -94,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				1639DAC41B0A5E3D00DC3217 /* Info.plist */,
+				16B13F781B0BA2A500427476 /* custom.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -115,6 +154,72 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		16B13F7A1B0BA48A00427476 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1639DACA1B0A5E3D00DC3217 /* BudgieLoginViewController.swift */,
+				16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */,
+				16B13F821B0BC2EE00427476 /* BudgieProfileViewController.swift */,
+				16B13F841B0C310100427476 /* BudgieTweetDetailsViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		16B13F7B1B0BA4B000427476 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				16B13F881B0C357E00427476 /* DetailsCells */,
+				16B13F7E1B0BC0D000427476 /* BudgieTweetCell.swift */,
+				16B13F801B0BC24A00427476 /* BudgieReTweetCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		16B13F881B0C357E00427476 /* DetailsCells */ = {
+			isa = PBXGroup;
+			children = (
+				16B13F861B0C357400427476 /* BudgieDetailsHeaderCell.swift */,
+				16B13F8F1B0C368100427476 /* BudgieDetailsCountersCell.swift */,
+				16B13F911B0C369800427476 /* BudgieDetailsActionsCell.swift */,
+				16B13F8D1B0C365E00427476 /* BudgieDetailsEmptyCell.swift */,
+			);
+			name = DetailsCells;
+			sourceTree = "<group>";
+		};
+		16B591251B0A617100C63812 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				16B591271B0A61C900C63812 /* TwitterClient.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		16B591261B0A617E00C63812 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				16B591291B0A814B00C63812 /* User.swift */,
+				16B5912B1B0A815900C63812 /* Tweet.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1C1F19165401510DE9EC5E3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD73C2BA77F7D72E7AFEA167 /* Pods.debug.xcconfig */,
+				EE3E614F0A98C0958DEEE7C6 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9C5B71FDE156512AAA8C34DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC63E5ED735F8DAD04838549 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,9 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1639DAE21B0A5E3D00DC3217 /* Build configuration list for PBXNativeTarget "Budgie" */;
 			buildPhases = (
+				DDC52B208D202E5508A15294 /* Check Pods Manifest.lock */,
 				1639DABC1B0A5E3D00DC3217 /* Sources */,
 				1639DABD1B0A5E3D00DC3217 /* Frameworks */,
 				1639DABE1B0A5E3D00DC3217 /* Resources */,
+				E429E3C5097A6C0A6D338468 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1639DACE1B0A5E3D00DC3217 /* Main.storyboard in Resources */,
+				16B13F791B0BA2A500427476 /* custom.plist in Resources */,
 				1639DAD31B0A5E3D00DC3217 /* LaunchScreen.xib in Resources */,
 				1639DAD01B0A5E3D00DC3217 /* Images.xcassets in Resources */,
 			);
@@ -210,13 +318,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DDC52B208D202E5508A15294 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E429E3C5097A6C0A6D338468 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1639DABC1B0A5E3D00DC3217 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1639DACB1B0A5E3D00DC3217 /* ViewController.swift in Sources */,
+				16B591281B0A61C900C63812 /* TwitterClient.swift in Sources */,
+				16B13F7F1B0BC0D000427476 /* BudgieTweetCell.swift in Sources */,
+				16B13F901B0C368100427476 /* BudgieDetailsCountersCell.swift in Sources */,
+				1639DACB1B0A5E3D00DC3217 /* BudgieLoginViewController.swift in Sources */,
 				1639DAC61B0A5E3D00DC3217 /* AppDelegate.swift in Sources */,
+				16B13F921B0C369800427476 /* BudgieDetailsActionsCell.swift in Sources */,
+				16B13F831B0BC2EE00427476 /* BudgieProfileViewController.swift in Sources */,
+				16B5912C1B0A815900C63812 /* Tweet.swift in Sources */,
+				16B13F811B0BC24A00427476 /* BudgieReTweetCell.swift in Sources */,
+				16B13F871B0C357400427476 /* BudgieDetailsHeaderCell.swift in Sources */,
+				16B13F8E1B0C365E00427476 /* BudgieDetailsEmptyCell.swift in Sources */,
+				16B13F7D1B0BB01000427476 /* BudgieHomeViewController.swift in Sources */,
+				16B13F851B0C310100427476 /* BudgieTweetDetailsViewController.swift in Sources */,
+				16B5912A1B0A814B00C63812 /* User.swift in Sources */,
 				1639DAC91B0A5E3D00DC3217 /* Budgie.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,21 +497,28 @@
 		};
 		1639DAE31B0A5E3D00DC3217 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD73C2BA77F7D72E7AFEA167 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Budgie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Budgie/Budgie-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		1639DAE41B0A5E3D00DC3217 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE3E614F0A98C0958DEEE7C6 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Budgie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Budgie/Budgie-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -415,6 +575,7 @@
 				1639DAE41B0A5E3D00DC3217 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1639DAE51B0A5E3D00DC3217 /* Build configuration list for PBXNativeTarget "BudgieTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +584,7 @@
 				1639DAE71B0A5E3D00DC3217 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

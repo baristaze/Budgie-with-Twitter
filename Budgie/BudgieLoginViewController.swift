@@ -8,11 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+
+class BudgieLoginViewController: UIViewController {
+
+    @IBAction func onLoginButton(sender: AnyObject) {
+        TwitterClient.sharedInstance.loginWithCompletion() { (user: User?, error: NSError?) in
+            if user != nil {
+                self.performSegueWithIdentifier("loginSegue", sender: self)
+            } else {
+                // handle error
+            }
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,4 +35,3 @@ class ViewController: UIViewController {
 
 
 }
-
