@@ -30,7 +30,6 @@ class BudgieDetailsCountersCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        println("BudgieTweetCell: layoutSubviews")
         super.layoutSubviews()
         self.layoutIfNeeded()
     }

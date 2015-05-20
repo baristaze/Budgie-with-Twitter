@@ -8,10 +8,16 @@
 
 import UIKit
 
-class BudgieTweetDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BudgieTweetDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, BudgieDetailsActionsCellDelegate {
     
-    var tweet: Tweet!
-    
+    var tweet: Tweet! {
+        didSet {
+            self.replyTweetId = tweet.tweetIdString
+            self.replyUserNamed = tweet.user?.screenName
+        }
+    }
+    private var replyTweetId: String?
+    private var replyUserNamed: String?
     private let budgieDetailHeaderCellReuseIdentifier = "budgieDetailHeaderCell"
     private let budgieDetailsCountersCellReuseIdentifier = "budgieDetailsCountersCell"
     private let budgieDetailsActionsCellReuseIdentifier = "budgieDetailsActionsCell"
@@ -40,15 +46,18 @@ class BudgieTweetDetailsViewController: UIViewController, UITableViewDataSource,
     }
     
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "DetailReplyTweetSegue" {
+            let composeTweetVC = (segue.destinationViewController as! UINavigationController).topViewController as! BudgieComposeTweetViewController
+            composeTweetVC.screenName = replyUserNamed
+            composeTweetVC.responseToId = replyTweetId
+        }
     }
-    */
+
 
 }
 
@@ -67,7 +76,7 @@ extension BudgieTweetDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -78,12 +87,9 @@ extension BudgieTweetDetailsViewController: UITableViewDataSource {
             cell.tweet = self.tweet
             return cell
         } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(budgieDetailsCountersCellReuseIdentifier, forIndexPath: indexPath) as! BudgieDetailsCountersCell
-            cell.tweet = self.tweet
-            return cell
-        } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier(budgieDetailsActionsCellReuseIdentifier, forIndexPath: indexPath) as! BudgieDetailsActionsCell
             cell.tweet = self.tweet
+            cell.delegate = self
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(budgieDetailsEmptyCellReuseIdentifier, forIndexPath: indexPath) as! BudgieDetailsEmptyCell
@@ -91,5 +97,25 @@ extension BudgieTweetDetailsViewController: UITableViewDataSource {
             return cell
         }
     }
+    
+}
+
+//MARK: BudgieTweetCellDelegate
+
+extension BudgieTweetDetailsViewController: BudgieDetailsActionsCellDelegate {
+    func budgieDetailsActionsCell(budgieDetailsActionsCell: BudgieDetailsActionsCell, didChangeReTweetedStatus status: Bool) {
+        self.tweet.isRetweeted = status
+    }
+    
+    func budgieDetailsActionsCell(budgieDetailsActionsCell: BudgieDetailsActionsCell, didChangeFavoriteStatus status: Bool) {
+        self.tweet.isFavorited = status
+    }
+    
+    func budgieDetailsActionsCell(budgieDetailsActionsCell: BudgieDetailsActionsCell, didPressReplyTweetId tweetId: String, fromUserNamed: String) {
+        self.replyTweetId = tweetId
+        self.replyUserNamed = fromUserNamed
+        self.performSegueWithIdentifier("DetailReplyTweetSegue", sender: self)
+    }
+
     
 }

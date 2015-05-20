@@ -8,6 +8,12 @@
 
 import UIKit
 
+@objc protocol BudgieTweetCellDelegate {
+    optional func budgieTweetCell(budgieTweetCell: BudgieTweetCell, didChangeFavoriteStatus status: Bool)
+    optional func budgieTweetCell(budgieTweetCell: BudgieTweetCell, didChangeReTweetedStatus status: Bool)
+    optional func budgieTweetCell(budgieTweetCell: BudgieTweetCell, didPressReplyTweetId tweetId: String, fromUserNamed: String)
+}
+
 class BudgieTweetCell: UITableViewCell {
 
     @IBOutlet var profileImageView: UIImageView!
@@ -18,6 +24,12 @@ class BudgieTweetCell: UITableViewCell {
     @IBOutlet var retweetCountLabel: UILabel!
     @IBOutlet var favoriteCountLabel: UILabel!
     
+    @IBOutlet var replyButton: UIButton!
+    @IBOutlet var retweetButton: UIButton!
+    @IBOutlet var favoriteButton: UIButton!
+    
+    weak var delegate: BudgieTweetCellDelegate?
+    
     var tweet: Tweet! {
         didSet {
             profileImageView.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
@@ -27,8 +39,44 @@ class BudgieTweetCell: UITableViewCell {
             createdAtLabel.text = "12/12/12"
             retweetCountLabel.text = "\(tweet.retweetCount!)"
             favoriteCountLabel.text = "\(tweet.favoriteCount!)"
+            if tweet.isRetweeted! { self.retweetButton.setImage(UIImage(named: "retweet_on.png"), forState: .Normal) }
+            else { self.retweetButton.setImage(UIImage(named: "retweet.png"), forState: .Normal) }
+            if tweet.isFavorited! { self.favoriteButton.setImage(UIImage(named: "favorite_on.png"), forState: .Normal) }
+            else { self.favoriteButton.setImage(UIImage(named: "favorite.png"), forState: .Normal) }
+
         }
     }
+   
+    @IBAction func onReply(sender: AnyObject) {
+        self.delegate?.budgieTweetCell!(self, didPressReplyTweetId: tweet.tweetIdString!, fromUserNamed: tweet.user!.screenName!)
+    }
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        TwitterClient.sharedInstance.retweet(tweet, completion: { (tweet, error) -> () in
+            if error == nil {
+                println("The cell knows that the tweet has been retweeted")
+                self.retweetCountLabel.text = "\(self.tweet.retweetCount! + 1)"
+                self.retweetButton.setImage(UIImage(named: "retweet_on.png"), forState: .Normal)
+                (self.delegate?.budgieTweetCell!(self, didChangeReTweetedStatus:  !(self.tweet.isRetweeted!)))
+            } else {
+                println(("The cell knows there has been an error retweeting"))
+            }
+        })
+    }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        TwitterClient.sharedInstance.favorite(tweet.tweetIdString!, completion: { (tweet, error) -> () in
+            if error == nil {
+                println("The cell knows that the tweet has been favorited")
+                self.favoriteCountLabel.text = "\(self.tweet.favoriteCount! + 1)"
+                self.favoriteButton.setImage(UIImage(named: "favorite_on.png"), forState: .Normal)
+                (self.delegate?.budgieTweetCell!(self, didChangeFavoriteStatus:  !(self.tweet.isFavorited!)))
+            } else {
+                println(("The cell knows there has been an error favoriting"))
+            }
+        })
+    }
+    
     
     override func awakeFromNib() {
         println("BudgieTweetCell: awakeFromNib")
@@ -41,10 +89,11 @@ class BudgieTweetCell: UITableViewCell {
         nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
         screenNameLabel.preferredMaxLayoutWidth = screenNameLabel.frame.size.width
         tweetTextLabel.preferredMaxLayoutWidth = tweetTextLabel.frame.size.width
+        
+        
     }
     
     override func layoutSubviews() {
-        println("BudgieTweetCell: layoutSubviews")
         super.layoutSubviews()
         self.layoutIfNeeded()
         nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width

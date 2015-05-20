@@ -31,7 +31,11 @@ class User: NSObject {
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
         profileImageUrl = dictionary["profile_image_url"] as? String
-        profileBannerUrl = (dictionary["profile_banner_url"] as? String)! + "/600x200" // Other Options: 1500x500 / 600x200 / 300x100 / and more based on Device
+        if let banner = (dictionary["profile_banner_url"] as? String) {
+            profileBannerUrl = (dictionary["profile_banner_url"] as? String)! + "/600x200" // Other Options: 1500x500 / 600x200 / 300x100 / and more based on Device
+        } else {
+            profileBannerUrl = "https://pbs.twimg.com/profile_banners/36671170/1357326210/600x200"
+        }
         tagline = dictionary["description"] as? String
         friendsCount = dictionary["friends_count"] as? Int
         followersCount = dictionary["followers_count"] as? Int

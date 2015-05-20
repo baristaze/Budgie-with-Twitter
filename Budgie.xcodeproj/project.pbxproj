@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160CB1EE1B0D0A2C002E35E7 /* BudgieComposeTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160CB1ED1B0D0A2C002E35E7 /* BudgieComposeTweetViewController.swift */; };
 		1639DAC61B0A5E3D00DC3217 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639DAC51B0A5E3D00DC3217 /* AppDelegate.swift */; };
 		1639DAC91B0A5E3D00DC3217 /* Budgie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1639DAC71B0A5E3D00DC3217 /* Budgie.xcdatamodeld */; };
 		1639DACB1B0A5E3D00DC3217 /* BudgieLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639DACA1B0A5E3D00DC3217 /* BudgieLoginViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160CB1ED1B0D0A2C002E35E7 /* BudgieComposeTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieComposeTweetViewController.swift; sourceTree = "<group>"; };
 		1639DAC01B0A5E3D00DC3217 /* Budgie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1639DAC41B0A5E3D00DC3217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1639DAC51B0A5E3D00DC3217 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */,
 				16B13F821B0BC2EE00427476 /* BudgieProfileViewController.swift */,
 				16B13F841B0C310100427476 /* BudgieTweetDetailsViewController.swift */,
+				160CB1ED1B0D0A2C002E35E7 /* BudgieComposeTweetViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				16B13F851B0C310100427476 /* BudgieTweetDetailsViewController.swift in Sources */,
 				16B5912A1B0A814B00C63812 /* User.swift in Sources */,
 				1639DAC91B0A5E3D00DC3217 /* Budgie.xcdatamodeld in Sources */,
+				160CB1EE1B0D0A2C002E35E7 /* BudgieComposeTweetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

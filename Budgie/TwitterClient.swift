@@ -15,8 +15,6 @@ let twitterBaseURL = NSURL(string: "https://api.twitter.com/")
 class TwitterClient: BDBOAuth1RequestOperationManager {
     
     private var loginCompletion: ((user: User?, error: NSError?) -> ())?
-//    private var tweetCache: [Tweet]?
-//    private var currentOffset = 0
     private var oldestTweetId: Double?
     private var newestTweetId: Double?
     private var oldestTweetIdString: String?
@@ -61,6 +59,72 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             self.loginCompletion?(user: nil, error: error)
                 
         }
+    }
+    
+    func sendTweet(tweetText: String!, replyToTweetID: String?, completion: (tweet: Tweet?, error: NSError?) -> () ) {
+        
+        var params: NSDictionary?
+        
+        if let replyToTweetID = replyToTweetID {
+            params = ["status": tweetText, "in_reply_to_status_id": replyToTweetID]
+        } else {
+            params = ["status": tweetText]
+        }
+        
+        POST("1.1/statuses/update.json", parameters: params!, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            var tweet = Tweet(dictionary: response as! NSDictionary)
+            println("Budgie posted your tweet with Id: \(tweet.tweetId!)")
+            completion(tweet: tweet, error: nil)
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Budgie failed to post yor tweet")
+                println(error)
+                completion(tweet: nil, error: error)
+        }
+        
+    }
+    
+    func retweet(tweet: Tweet, completion: (tweet: Tweet?, error: NSError?) -> () ) {
+        
+        var tweetId = tweet.tweetIdString!
+        
+        if !(tweet.isRetweeted!) {
+            var urlString = "1.1/statuses/retweet/" + tweetId + ".json"
+            POST(urlString, parameters: ["trim_user" : false], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                println("Budgie retweeted tweet with Id: \(tweetId)")
+                var tweet = Tweet(dictionary: response as! NSDictionary)
+                completion(tweet: tweet, error: nil)
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Budgie failed to retweet tweet with Id: \(tweetId)")
+                println(error)
+                completion(tweet: nil, error: error)
+            }
+        } else {
+//            var urlString = "1.1/statuses/destroy/" + tweetId + ".json"
+//            POST(urlString, parameters: ["trim_user" : false], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+//                println("Budgie unRetweeted tweet with Id: \(tweetId)")
+//                var tweet = Tweet(dictionary: response as! NSDictionary)
+//                completion(tweet: tweet, error: nil)
+//            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+//                println("Budgie failed to unRetweet tweet with Id: \(tweetId)")
+//                println(error)
+//                completion(tweet: nil, error: error)
+//            }
+        }
+        
+    }
+    
+    func favorite(tweetId: String!, completion: (tweet: Tweet?, error: NSError?) -> () ) {
+        
+        POST("1.1/favorites/create.json", parameters: ["id":tweetId], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println("Budgie favorited tweet with Id: \(tweetId)")
+            var tweet = Tweet(dictionary: response as! NSDictionary)
+            completion(tweet: tweet, error: nil)
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Budgie failed to favorite tweet with Id: \(tweetId)")
+                println(error)
+                completion(tweet: nil, error: error)
+        }
+        
     }
     
     func openURL(url: NSURL) {

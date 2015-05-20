@@ -45,7 +45,6 @@ class BudgieDetailsHeaderCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        println("BudgieTweetCell: layoutSubviews")
         super.layoutSubviews()
         self.layoutIfNeeded()
         nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
