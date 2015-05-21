@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BudgieTweetCellDelegate {
+class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BudgieTweetCellDelegate, BudgieComposeTweetViewControllerDelegate {
     
     private let blueColor: UIColor = UIColor(red: (88.0 / 255.0), green: (145.0 / 255.0), blue: (211.0 / 255.0), alpha: 1)
     private let yellowColor: UIColor = UIColor(red: (252.0 / 255.0), green: (248.0 / 255.0), blue: (197.0 / 255.0), alpha: 1)
@@ -121,6 +121,9 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             let composeTweetVC = (segue.destinationViewController as! UINavigationController).topViewController as! BudgieComposeTweetViewController
             composeTweetVC.screenName = replyUserNamed
             composeTweetVC.responseToId = replyTweetId
+        } else if segue.identifier == "ComposeNewTweetSegue" {
+            let composeTweetVC = (segue.destinationViewController as! UINavigationController).topViewController as! BudgieComposeTweetViewController
+            composeTweetVC.delegate = self
         }
     }
 
@@ -193,4 +196,13 @@ extension BudgieHomeViewController: BudgieTweetCellDelegate {
     }
     
     
+}
+
+//Mark: BudgieComposeTweetViewControllerDelegate
+
+extension BudgieHomeViewController: BudgieComposeTweetViewControllerDelegate {
+    func budgieComposeTweetViewController(budgieComposeTweetViewController: BudgieComposeTweetViewController, didPostNewTweet tweet: Tweet) {
+        self.tweets = [tweet] + self.tweets!
+        self.tableView.reloadData()
+    }
 }

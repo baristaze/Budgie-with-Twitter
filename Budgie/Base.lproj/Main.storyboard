@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchImageTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JEq-GQ-bUr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImageTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JEq-GQ-bUr">
                                 <rect key="frame" x="203" y="141" width="195" height="36"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LuangImageBudgie_2" translatesAutoresizingMaskIntoConstraints="NO" id="SDh-et-aOz">
@@ -764,6 +764,6 @@
         <image name="retweet" width="19" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="o2f-fE-Pod"/>
+        <segue reference="Mnv-uA-U4D"/>
     </inferredMetricsTieBreakers>
 </document>

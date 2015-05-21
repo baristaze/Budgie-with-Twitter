@@ -8,6 +8,9 @@
 
 import UIKit
 
+@objc protocol BudgieComposeTweetViewControllerDelegate {
+    optional func budgieComposeTweetViewController(budgieComposeTweetViewController: BudgieComposeTweetViewController, didPostNewTweet tweet: Tweet)
+}
 class BudgieComposeTweetViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet var profileImageView: UIImageView!
@@ -22,7 +25,8 @@ class BudgieComposeTweetViewController: UIViewController, UITextViewDelegate {
     @IBAction func onTweet(sender: AnyObject) {
         println("Tweet Sent")
         TwitterClient.sharedInstance.sendTweet(textView.text, replyToTweetID: responseToId) { (tweet, error) -> () in
-                self.dismissViewControllerAnimated(true, completion: nil)
+            self.delegate?.budgieComposeTweetViewController!(self, didPostNewTweet: tweet!)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
 
     }
@@ -31,6 +35,8 @@ class BudgieComposeTweetViewController: UIViewController, UITextViewDelegate {
     private let greenColor: UIColor = UIColor(red: (184.0 / 255.0), green: (233.0 / 255.0), blue: (134.0 / 255.0), alpha: 1)
     var screenName: String?
     var responseToId: String?
+    
+    weak var delegate: BudgieComposeTweetViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
