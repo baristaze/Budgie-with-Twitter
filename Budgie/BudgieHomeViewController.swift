@@ -44,15 +44,6 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationController?.navigationBar.barTintColor = blueColor
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "LaunchImageTitle"))
         
-//        self.tabBarController?.tabBar.barTintColor = blueColor // Tint Color to apply to the tab bar background
-//        self.tabBarController?.tabBar.tintColor = yellowColor // The tint color to apply to the tab bar’s tab bar items.
-//        self.tabBarController?.tabBar.translucent = false
-//        self.tabBarController?.tabBar.backgroundColor = UIColor.whiteColor()
-//        
-//        var homeIcon = UIImage(named: "ProfileIcon_2")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-//        self.tabBarController!.tabBarItem.selectedImage = homeIcon
-//        self.tabBarController!.tabBarItem.image = homeIcon
-        
         newSearch = Search()
         lastSearch = Search()
         

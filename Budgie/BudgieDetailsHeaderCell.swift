@@ -15,8 +15,7 @@ class BudgieDetailsHeaderCell: UITableViewCell {
     @IBOutlet var screenNameLabel: UILabel!
     @IBOutlet var tweetTextLabel: UILabel!
     @IBOutlet var createdAtLabel: UILabel!
-//    @IBOutlet var retweetCountLabel: UILabel!
-//    @IBOutlet var favoriteCountLabel: UILabel!
+
     
     
     var tweet: Tweet! {
@@ -26,8 +25,6 @@ class BudgieDetailsHeaderCell: UITableViewCell {
             screenNameLabel.text = "@\(tweet.user!.screenName!)"
             tweetTextLabel.text = tweet.text
             createdAtLabel.text = tweet.text
-//            retweetCountLabel.text = "\(tweet.retweetCount!)"
-//            favoriteCountLabel.text = "\(tweet.favoriteCount!)"
         }
     }
     
