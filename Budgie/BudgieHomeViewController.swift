@@ -10,6 +10,8 @@ import UIKit
 
 class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BudgieTweetCellDelegate {
     
+    private let blueColor: UIColor = UIColor(red: (88.0 / 255.0), green: (145.0 / 255.0), blue: (211.0 / 255.0), alpha: 1)
+    private let yellowColor: UIColor = UIColor(red: (252.0 / 255.0), green: (248.0 / 255.0), blue: (197.0 / 255.0), alpha: 1)
     private var tableViewRefreshControl: UIRefreshControl!
     private var loadingView: UIActivityIndicatorView!
     
@@ -35,6 +37,22 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         println("BudgieHomeViewController: viewDidLoad")
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barTintColor = blueColor
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "LaunchImageTitle"))
+        
+        self.tabBarController?.tabBar.barTintColor = blueColor // Tint Color to apply to the tab bar background
+        self.tabBarController?.tabBar.tintColor = yellowColor // The tint color to apply to the tab bar’s tab bar items.
+        self.tabBarController?.tabBar.translucent = false
+        self.tabBarController?.tabBar.backgroundColor = UIColor.whiteColor()
+        
+        var homeIcon = UIImage(named: "ProfileIcon_2")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.tabBarController!.tabBarItem.selectedImage = homeIcon
+        self.tabBarController!.tabBarItem.image = homeIcon
+        
+//        var homeIcon = UIImage(named: "ProfileIcon_2")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//        var newBarItem = UITabBarItem(title: nil, image: homeIcon, selectedImage: nil)
+//        self.tabBarItem.image = homeIcon
         
         newSearch = Search()
         

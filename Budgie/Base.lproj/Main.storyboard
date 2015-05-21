@@ -18,9 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3G-SS-nvy">
-                                <rect key="frame" x="239" y="285" width="123" height="30"/>
-                                <state key="normal" title="Login With Twitter">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchImageTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JEq-GQ-bUr">
+                                <rect key="frame" x="203" y="141" width="195" height="36"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LuangImageBudgie_2" translatesAutoresizingMaskIntoConstraints="NO" id="SDh-et-aOz">
+                                <rect key="frame" x="235" y="209" width="131" height="183"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3G-SS-nvy">
+                                <rect key="frame" x="199" y="473" width="203" height="46"/>
+                                <state key="normal" image="SignInButton">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -28,11 +34,24 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.34509803919999998" green="0.56862745100000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="n3G-SS-nvy" secondAttribute="centerX" id="0EL-aS-JkA"/>
                             <constraint firstAttribute="centerY" secondItem="n3G-SS-nvy" secondAttribute="centerY" id="DIH-dI-CRI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="n3G-SS-nvy" secondAttribute="bottom" constant="81" id="EkT-de-Iqa"/>
+                            <constraint firstAttribute="centerX" secondItem="JEq-GQ-bUr" secondAttribute="centerX" id="HWY-Cg-aJN"/>
+                            <constraint firstItem="SDh-et-aOz" firstAttribute="top" secondItem="JEq-GQ-bUr" secondAttribute="bottom" constant="32" id="UsU-cA-6hQ"/>
                             <constraint firstAttribute="centerX" secondItem="n3G-SS-nvy" secondAttribute="centerX" id="VW9-8w-Wi8"/>
+                            <constraint firstAttribute="centerX" secondItem="SDh-et-aOz" secondAttribute="centerX" id="d4Y-db-l2q"/>
+                            <constraint firstAttribute="centerY" secondItem="SDh-et-aOz" secondAttribute="centerY" id="xhk-sn-7Ci"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="DIH-dI-CRI"/>
+                                <exclude reference="VW9-8w-Wi8"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <segue destination="Gf3-nd-M8s" kind="presentation" identifier="loginSegue" id="FKz-2r-0da"/>
@@ -51,11 +70,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Vtq-Wz-Djz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eDb-dy-F4O">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="59C-nZ-ZIs">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgieDetailHeaderCell" rowHeight="170" id="wFm-yl-gve" customClass="BudgieDetailsHeaderCell" customModule="Budgie" customModuleProvider="target">
@@ -303,11 +322,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="gah-1S-abt">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="jw8-7Z-PsB">
+                            <color key="tintColor" red="0.98823529409999999" green="0.97254901959999995" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onCancel:" destination="hpf-jO-7PS" id="xkV-qP-d9F"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tweet" id="FnL-aP-aPy">
+                            <color key="tintColor" red="0.98823529409999999" green="0.97254901959999995" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onTweet:" destination="hpf-jO-7PS" id="Zzx-Pc-8Of"/>
                             </connections>
@@ -333,14 +354,14 @@
                         <viewControllerLayoutGuide type="bottom" id="V2d-P8-vy8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7rZ-ni-40k">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E8u-ji-LHW">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="176" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E8u-ji-LHW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgieTweetCell" rowHeight="168" id="1Rn-Pe-yMO" customClass="BudgieTweetCell" customModule="Budgie" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="budgieTweetCell" rowHeight="176" id="1Rn-Pe-yMO" customClass="BudgieTweetCell" customModule="Budgie" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Rn-Pe-yMO" id="hga-Bm-YMl">
@@ -373,25 +394,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jjM-vc-Ehd">
-                                                    <rect key="frame" x="64" y="132" width="528" height="20"/>
+                                                    <rect key="frame" x="64" y="132" width="528" height="25"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78g-Mv-uIy">
-                                                            <rect key="frame" x="142" y="1" width="51" height="18"/>
+                                                            <rect key="frame" x="166" y="4" width="51" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Akh-xc-Adf">
-                                                            <rect key="frame" x="60" y="1" width="51" height="18"/>
+                                                            <rect key="frame" x="76" y="4" width="51" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcg-XP-6kM">
-                                                            <rect key="frame" x="0.0" y="2" width="16" height="16"/>
+                                                            <rect key="frame" x="0.0" y="1" width="24" height="24"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="16" id="Nvf-qn-YWi"/>
-                                                                <constraint firstAttribute="height" constant="16" id="zOw-DD-lEH"/>
+                                                                <constraint firstAttribute="width" constant="24" id="Nvf-qn-YWi"/>
+                                                                <constraint firstAttribute="height" constant="24" id="zOw-DD-lEH"/>
                                                             </constraints>
                                                             <state key="normal" image="reply">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -401,10 +422,10 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75K-5R-wlG">
-                                                            <rect key="frame" x="36" y="2" width="19" height="16"/>
+                                                            <rect key="frame" x="44" y="1" width="27" height="24"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="16" id="GhV-k5-u5Q"/>
-                                                                <constraint firstAttribute="width" constant="19" id="grp-z2-UDx"/>
+                                                                <constraint firstAttribute="height" constant="24" id="GhV-k5-u5Q"/>
+                                                                <constraint firstAttribute="width" constant="27" id="grp-z2-UDx"/>
                                                             </constraints>
                                                             <state key="normal" image="retweet">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -414,10 +435,10 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COh-9Y-Gfz">
-                                                            <rect key="frame" x="121" y="2" width="16" height="16"/>
+                                                            <rect key="frame" x="137" y="1" width="24" height="24"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="16" id="9o4-mG-j0Y"/>
-                                                                <constraint firstAttribute="height" constant="16" id="DO6-Rd-Ueu"/>
+                                                                <constraint firstAttribute="width" constant="24" id="9o4-mG-j0Y"/>
+                                                                <constraint firstAttribute="height" constant="24" id="DO6-Rd-Ueu"/>
                                                             </constraints>
                                                             <state key="normal" image="favorite">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -438,7 +459,7 @@
                                                         <constraint firstItem="COh-9Y-Gfz" firstAttribute="leading" secondItem="Akh-xc-Adf" secondAttribute="trailing" constant="10" id="ekH-oH-tr7"/>
                                                         <constraint firstItem="Akh-xc-Adf" firstAttribute="leading" secondItem="75K-5R-wlG" secondAttribute="trailing" constant="5" id="ia2-Cf-aVy"/>
                                                         <constraint firstAttribute="centerY" secondItem="78g-Mv-uIy" secondAttribute="centerY" id="jYz-Sh-0TM"/>
-                                                        <constraint firstAttribute="height" constant="20" id="jlt-Ji-N14"/>
+                                                        <constraint firstAttribute="height" constant="25" id="jlt-Ji-N14"/>
                                                         <constraint firstAttribute="centerY" secondItem="COh-9Y-Gfz" secondAttribute="centerY" id="n9J-wg-2hd"/>
                                                     </constraints>
                                                 </view>
@@ -496,6 +517,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8rF-wA-aNH">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="jj0-xS-fM3">
+                            <color key="tintColor" red="0.98823529409999999" green="0.97254901959999995" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="TG3-FM-AfB" kind="presentation" identifier="ComposeNewTweetSegue" id="Mnv-uA-U4D"/>
                             </connections>
@@ -516,9 +538,12 @@
                 <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="Gf3-nd-M8s" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="VAY-jJ-BaT">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="VAY-jJ-BaT">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.97254901959999995" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.34509803921568627" green="0.56862745098039214" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="mWE-Ui-Xzo" kind="relationship" relationship="viewControllers" id="noR-y6-VIQ"/>
@@ -529,15 +554,16 @@
             </objects>
             <point key="canvasLocation" x="-289" y="103"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="2mz-Zd-ZUl">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mWE-Ui-Xzo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="3tj-QG-ZUN"/>
+                    <tabBarItem key="tabBarItem" title="" image="TweetsIcon_2" id="3tj-QG-ZUN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nnO-Sd-fDE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.34509803919999998" green="0.56862745100000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -548,7 +574,7 @@
             </objects>
             <point key="canvasLocation" x="429" y="-419"/>
         </scene>
-        <!--Profile-->
+        <!--Budgie Profile View Controller-->
         <scene sceneID="z4e-yY-ZKH">
             <objects>
                 <viewController id="0im-vh-cpW" customClass="BudgieProfileViewController" customModule="Budgie" customModuleProvider="target" sceneMemberID="viewController">
@@ -557,7 +583,7 @@
                         <viewControllerLayoutGuide type="bottom" id="8dG-mT-2hy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Wq-2l-Gm8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-Hh-4DP">
@@ -661,7 +687,7 @@
                             <constraint firstAttribute="trailing" secondItem="6eE-9c-BOr" secondAttribute="trailing" constant="8" id="yvR-JE-XFb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="0rJ-Gp-fns"/>
+                    <tabBarItem key="tabBarItem" title="" image="ProfileIcon_2" id="0rJ-Gp-fns"/>
                     <connections>
                         <outlet property="bannerImageView" destination="UBf-hZ-ht2" id="aA0-6m-9r9"/>
                         <outlet property="followersCountLabel" destination="Nae-h6-wcb" id="caQ-Hm-qvL"/>
@@ -685,6 +711,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="k4g-Mj-Zef">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.34509803919999998" green="0.56862745100000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -697,11 +724,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LaunchImageTitle" width="195" height="36"/>
+        <image name="LuangImageBudgie_2" width="131" height="183"/>
+        <image name="ProfileIcon_2" width="26" height="32"/>
+        <image name="SignInButton" width="203" height="46"/>
+        <image name="TweetsIcon_2" width="35" height="31"/>
         <image name="favorite" width="16" height="16"/>
         <image name="reply" width="16" height="16"/>
         <image name="retweet" width="19" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="o2f-fE-Pod"/>
+        <segue reference="Foi-at-xtA"/>
     </inferredMetricsTieBreakers>
 </document>

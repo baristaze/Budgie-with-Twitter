@@ -26,7 +26,9 @@ class BudgieComposeTweetViewController: UIViewController, UITextViewDelegate {
         }
 
     }
-    
+    private let blueColor: UIColor = UIColor(red: (88.0 / 255.0), green: (145.0 / 255.0), blue: (211.0 / 255.0), alpha: 1)
+    private let yellowColor: UIColor = UIColor(red: (252.0 / 255.0), green: (248.0 / 255.0), blue: (197.0 / 255.0), alpha: 1)
+    private let greenColor: UIColor = UIColor(red: (184.0 / 255.0), green: (233.0 / 255.0), blue: (134.0 / 255.0), alpha: 1)
     var screenName: String?
     var responseToId: String?
     
@@ -35,17 +37,22 @@ class BudgieComposeTweetViewController: UIViewController, UITextViewDelegate {
         
         var currentUser = User.currentUser!
         
+        self.navigationController?.navigationBar.barTintColor = blueColor
+        
         profileImageView.setImageWithURL(NSURL(string: currentUser.profileImageUrl!)!)
+        profileImageView.layer.cornerRadius = 5
+        profileImageView.clipsToBounds = true
         nameLabel.text = currentUser.name
-        screenNameLabel.text = currentUser.screenName
+        screenNameLabel.text = "@" + currentUser.screenName!
         
         textView.delegate = self
         textView.clearsOnInsertion = true
-        textView.layer.borderColor = UIColor.grayColor().CGColor
-        textView.layer.borderWidth = 1
+        textView.layer.borderColor = blueColor.CGColor
+        textView.layer.borderWidth = 3
         textView.layer.cornerRadius = 8
         textView.resignFirstResponder()
         
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.navigationItem.title = "140"
         // Do any additional setup after loading the view.
     }
