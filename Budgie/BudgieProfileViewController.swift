@@ -21,7 +21,9 @@ class BudgieProfileViewController: UIViewController {
     
     
     @IBAction func onLogout(sender: AnyObject) {
+        TwitterClient.sharedInstance.resetClient()
         User.currentUser?.logout()
+        
     }
     
     

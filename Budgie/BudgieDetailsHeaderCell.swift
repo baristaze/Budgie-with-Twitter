@@ -25,7 +25,7 @@ class BudgieDetailsHeaderCell: UITableViewCell {
             nameLabel.text = tweet.user?.name
             screenNameLabel.text = "@\(tweet.user!.screenName!)"
             tweetTextLabel.text = tweet.text
-            createdAtLabel.text = "12/12/12"
+            createdAtLabel.text = tweet.text
 //            retweetCountLabel.text = "\(tweet.retweetCount!)"
 //            favoriteCountLabel.text = "\(tweet.favoriteCount!)"
         }

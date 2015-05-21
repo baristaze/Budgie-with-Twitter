@@ -19,6 +19,9 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     private var newestTweetId: Double?
     private var oldestTweetIdString: String?
     private var newestTweetIdString: String?
+    private var tweetsCache: [NSDictionary]?
+    private var currentOffset: Int?
+    private var lastCallDidReturn: Bool = true
     
     class var sharedInstance: TwitterClient {
         struct Static {
@@ -27,24 +30,67 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         
         return Static.instance
     }
+    
+    
+    func cachedHomeTimeLineWithParams(offset: Int?, params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> () ) {
+        
+        currentOffset = offset ?? 0
+        
+        if (tweetsCache != nil) && (tweetsCache!.count != 0) && (currentOffset! <= (tweetsCache!.count - 20)) {
+            println("Returning chached Tweets")
+            var upperLimit = (self.currentOffset! + 20) < (self.tweetsCache!.count) ? (self.currentOffset! + 20) : (self.tweetsCache!.count)
+            var cachedTweets = Tweet.tweetsWithArray(Array(self.tweetsCache![self.currentOffset!..<upperLimit]))
+            self.newestTweetId = cachedTweets[0].tweetId
+            self.newestTweetIdString = cachedTweets[0].tweetIdString
+            self.oldestTweetId = cachedTweets[cachedTweets.count - 1].tweetId
+            self.oldestTweetIdString = cachedTweets[cachedTweets.count - 1].tweetIdString
+            completion(tweets: cachedTweets, error: nil)
+        } else if lastCallDidReturn {
+            println("Calling the API for more Tweets")
+            lastCallDidReturn = false
+            GET("1.1/statuses/home_timeline.json", parameters: ["count":200], success: { (operation: AFHTTPRequestOperation!, response:AnyObject!) -> Void in
+                
+                if self.tweetsCache == nil {
+                    self.tweetsCache = response as? [NSDictionary]
+                } else {
+                    self.tweetsCache! += (response as! [NSDictionary])
+                }
+                println("TweetCache Updated. New Count: \(self.tweetsCache!.count)")
+                var upperLimit = (self.currentOffset! + 20) < (self.tweetsCache!.count) ? (self.currentOffset! + 20) : (self.tweetsCache!.count)
+                
+                var tweets = Tweet.tweetsWithArray(Array(self.tweetsCache![self.currentOffset!..<upperLimit]))
+                println("Returning >>  \(tweets.count) << tweets")
+                self.newestTweetId = tweets[0].tweetId
+                self.newestTweetIdString = tweets[0].tweetIdString
+                self.oldestTweetId = tweets[tweets.count - 1].tweetId
+                self.oldestTweetIdString = tweets[tweets.count - 1].tweetIdString
+                self.lastCallDidReturn = true
+                completion(tweets: tweets, error: nil)
+            }, failure: { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                println("Error Getting Current User")
+                self.lastCallDidReturn = true
+                completion(tweets: nil, error: error)
+            })
+            
+        } else {
+            println("Previous call to API still pending. Ignoring request")
+            completion(tweets: nil, error: NSError(domain: "twitterAPI", code: 1, userInfo: nil)) // Code 1: Previous call still pendint
+        }
+        
+    }
 
     
-    func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> () ) {
-        GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response:AnyObject!) -> Void in
-//            println((response as! [NSDictionary])[0])
-            var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
 
-            self.newestTweetId = tweets[0].tweetId
-            self.newestTweetIdString = tweets[0].tweetIdString
-            self.oldestTweetId = tweets[tweets.count - 1].tweetId
-            self.oldestTweetIdString = tweets[tweets.count - 1].tweetIdString
-            
-            completion(tweets: tweets, error: nil)
-        }, failure: { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
-            println("Error Getting Current User")
-            completion(tweets: nil, error: error)
-        })
+    func homeTimelineWithParams(offset: Int?, params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> () ) {
+        cachedHomeTimeLineWithParams(offset, params: params) { (tweets, error) -> () in
+            if error == nil {
+                completion(tweets: tweets, error: nil)
+            } else {
+                completion(tweets: nil, error: error)
+            }
+        }
     }
+    
 
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
         loginCompletion = completion
@@ -59,6 +105,15 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             self.loginCompletion?(user: nil, error: error)
                 
         }
+    }
+    
+    func resetClient() {
+        oldestTweetId = nil
+        oldestTweetIdString = nil
+        newestTweetId = nil
+        newestTweetIdString = nil
+        tweetsCache = [NSDictionary]()
+        currentOffset = nil
     }
     
     func sendTweet(tweetText: String!, replyToTweetID: String?, completion: (tweet: Tweet?, error: NSError?) -> () ) {

@@ -13,8 +13,9 @@ class Tweet: NSObject {
     var tweetId: Double?
     var tweetIdString: String?
     var text: String?
-    var createAtString: String?
+    var createdAtString: String?
     var createdAt: NSDate?
+    var dateToDisplay: String?
     var retweetCount: Int?
     var favoriteCount: Int?
     var isRetweeted: Bool?
@@ -23,18 +24,37 @@ class Tweet: NSObject {
     init(dictionary: NSDictionary) {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text  = dictionary["text"] as? String
-        createAtString = dictionary["created_at"] as? String
+        createdAtString = dictionary["created_at"] as? String
         tweetId = dictionary["id"] as? Double
         tweetIdString = dictionary["id_str"] as? String
-        
         var formatter = NSDateFormatter()
-        formatter.dateFormat = "EEE MMM dd HH:mm:ss Z YYYY"
-        createdAt = formatter.dateFromString(createAtString!)
+        formatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
+        createdAt = formatter.dateFromString(createdAtString!)
+        var intervalSinceCreated = NSDate().timeIntervalSinceDate(createdAt!)
+        var hh: Int = Int(intervalSinceCreated / 3600.0)
+        var mm: Int = Int(intervalSinceCreated / 60.0)
+        var ss = Int(intervalSinceCreated - Double(hh * 3600) - Double(mm * 60))
+        
+        if hh >= 24 {
+            formatter.dateFormat = "MM/dd/yy"
+            dateToDisplay = formatter.stringFromDate(createdAt!)
+        } else if hh >= 1 {
+            dateToDisplay = "\(hh)h"
+        } else if mm > 0 {
+            dateToDisplay = "\(mm)m"
+        } else {
+            dateToDisplay = "\(ss)s"
+        }
         
         favoriteCount = dictionary["favorite_count"] as? Int
         retweetCount = dictionary["retweet_count"] as? Int
         isRetweeted = dictionary["retweeted"] as? Bool
         isFavorited = dictionary["favorited"] as? Bool
+        
+    }
+    
+    private func calcDisplayDate(createdAt: NSDate?) {
+        
         
     }
     

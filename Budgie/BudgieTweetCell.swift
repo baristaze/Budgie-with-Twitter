@@ -23,6 +23,8 @@ class BudgieTweetCell: UITableViewCell {
     @IBOutlet var createdAtLabel: UILabel!
     @IBOutlet var retweetCountLabel: UILabel!
     @IBOutlet var favoriteCountLabel: UILabel!
+    @IBOutlet var retweetedFromLabel: UILabel!
+    @IBOutlet var retweetedIcon: UIImageView!
     
     @IBOutlet var replyButton: UIButton!
     @IBOutlet var retweetButton: UIButton!
@@ -36,15 +38,25 @@ class BudgieTweetCell: UITableViewCell {
             nameLabel.text = tweet.user?.name
             screenNameLabel.text = "@\(tweet.user!.screenName!)"
             tweetTextLabel.text = tweet.text
-            createdAtLabel.text = "12/12/12"
+            createdAtLabel.text = tweet.dateToDisplay
             retweetCountLabel.text = "\(tweet.retweetCount!)"
             favoriteCountLabel.text = "\(tweet.favoriteCount!)"
             if tweet.isRetweeted! { self.retweetButton.setImage(UIImage(named: "retweet_on.png"), forState: .Normal) }
             else { self.retweetButton.setImage(UIImage(named: "retweet.png"), forState: .Normal) }
             if tweet.isFavorited! { self.favoriteButton.setImage(UIImage(named: "favorite_on.png"), forState: .Normal) }
             else { self.favoriteButton.setImage(UIImage(named: "favorite.png"), forState: .Normal) }
-
+            
+            var range = tweet.text!.rangeOfString("RT")
+            if (range != nil) && (range?.startIndex == tweet.text!.startIndex)  {
+                retweetedIcon.hidden = false
+                var range2 = tweet.text!.rangeOfString(":")
+                retweetedFromLabel.text = "Retweeted from " + tweet.text!.substringToIndex(range2!.startIndex).substringFromIndex(range!.endIndex)
+            } else {
+                retweetedIcon.hidden = true
+                retweetedFromLabel.text = ""
+            }
         }
+        
     }
    
     @IBAction func onReply(sender: AnyObject) {
@@ -79,7 +91,6 @@ class BudgieTweetCell: UITableViewCell {
     
     
     override func awakeFromNib() {
-        println("BudgieTweetCell: awakeFromNib")
         super.awakeFromNib()
         self.selectionStyle = UITableViewCellSelectionStyle.None
         self.accessoryType = UITableViewCellAccessoryType.None
