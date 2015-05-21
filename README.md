@@ -46,4 +46,4 @@ Credits
 * [Twitter API](https://apps.twitter.com/)
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
 * [BDBOAuth1Manager](https://github.com/bdbergeron/BDBOAuth1Manager)
-* [Gifs Created with Licecap](http://www.cockos.com/licecap/)
+* [GIFs Created with Licecap](http://www.cockos.com/licecap/)
