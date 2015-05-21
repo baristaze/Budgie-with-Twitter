@@ -39,8 +39,9 @@ Time spent: `21 hours`
 
 ### Walkthrough
 
-![Video Walkthrough]()
-![Video Walkthrough]()
+![Video Walkthrough](http://i.imgur.com/6oXgJFu.gif)
+![Video Walkthrough](http://i.imgur.com/FnRkEie.gif)
+
 Credits
 ---------
 * [Twitter API](https://apps.twitter.com/)
