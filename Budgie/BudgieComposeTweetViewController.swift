@@ -24,15 +24,13 @@ class BudgieComposeTweetViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func onTweet(sender: AnyObject) {
         println("Tweet Sent")
-        TwitterClient.sharedInstance.sendTweet(textView.text, replyToTweetID: responseToId) { (tweet, error) -> () in
+        TwitterClient.sharedInstance.sendTweet(textView.text, replyToTweetID: responseToId) { (success, tweet, error) -> () in
             self.delegate?.budgieComposeTweetViewController!(self, didPostNewTweet: tweet!)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
 
     }
-    private let blueColor: UIColor = UIColor(red: (88.0 / 255.0), green: (145.0 / 255.0), blue: (211.0 / 255.0), alpha: 1)
-    private let yellowColor: UIColor = UIColor(red: (252.0 / 255.0), green: (248.0 / 255.0), blue: (197.0 / 255.0), alpha: 1)
-    private let greenColor: UIColor = UIColor(red: (184.0 / 255.0), green: (233.0 / 255.0), blue: (134.0 / 255.0), alpha: 1)
+
     var screenName: String?
     var responseToId: String?
     
@@ -43,7 +41,7 @@ class BudgieComposeTweetViewController: UIViewController, UITextViewDelegate {
         
         var currentUser = User.currentUser!
         
-        self.navigationController?.navigationBar.barTintColor = blueColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.budgieBlue()
         
         profileImageView.setImageWithURL(NSURL(string: currentUser.profileImageUrl!)!)
         profileImageView.layer.cornerRadius = 5
@@ -53,7 +51,7 @@ class BudgieComposeTweetViewController: UIViewController, UITextViewDelegate {
         
         textView.delegate = self
         textView.clearsOnInsertion = true
-        textView.layer.borderColor = blueColor.CGColor
+        textView.layer.borderColor = UIColor.budgieBlue().CGColor
         textView.layer.borderWidth = 3
         textView.layer.cornerRadius = 8
         textView.resignFirstResponder()

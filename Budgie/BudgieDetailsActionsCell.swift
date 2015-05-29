@@ -41,7 +41,7 @@ class BudgieDetailsActionsCell: UITableViewCell {
     }
     
     @IBAction func onRetweet(sender: AnyObject) {
-        TwitterClient.sharedInstance.retweet(tweet, completion: { (tweet, error) -> () in
+        TwitterClient.sharedInstance.retweet(tweet, completion: { (success, tweet, error) -> () in
             if error == nil {
                 println("The cell knows that the tweet has been retweeted")
                 self.retweetCountLabel.text = "\(self.tweet.retweetCount! + 1)"
@@ -54,7 +54,7 @@ class BudgieDetailsActionsCell: UITableViewCell {
     }
     
     @IBAction func onFavorite(sender: AnyObject) {
-        TwitterClient.sharedInstance.favorite(tweet.tweetIdString!, completion: { (tweet, error) -> () in
+        TwitterClient.sharedInstance.favorite(tweet.tweetIdString!, completion: { (success, tweet, error) -> () in
             if error == nil {
                 println("The cell knows that the tweet has been favorited")
                 self.favoriteCountLabel.text = "\(self.tweet.favoriteCount! + 1)"

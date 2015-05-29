@@ -2,11 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>TwitterConsumerKey</key>
+	<key>TWITTER_CONSUMER_KEY</key>
 	<string>nY3QdtSgwmQl7OEBavf9CK6sz</string>
-	<key>TwitterConsumerSecret</key>
+	<key>TWITTER_CONSUMER_SECRET</key>
 	<string>W2oy2CbeBixLaAUX166tzM4aR7eYLtSLn1G0JeXpg01QzYZG1B</string>
-	<key>TwitterBaseURL</key>
+	<key>TWITTER_BASE_URL</key>
 	<string>https://api.twitter.com/</string>
+	<key>HOME_TIMELINE_PATH</key>
+	<string>1.1/statuses/home_timeline.json</string>
+	<key>UPDATE_STATUS_PATH</key>
+	<string>1.1/statuses/update.json</string>
+	<key>CREATE_FAVORITE_PATH</key>
+	<string>1.1/favorites/create.json</string>
+	<key>VERIFY_CREDENTIALS_PATH</key>
+	<string>1.1/account/verify_credentials.json</string>
+	<key>RETWEET_PATH</key>
+	<string>1.1/statuses/retweet/</string>
+	<key>RATE_LIMIT_STATUS</key>
+	<string>1.1/application/rate_limit_status.json</string>
+	<key>OAUTH_ACCESS_TOKEN_PATH</key>
+	<string>oauth/access_token</string>
+	<key>OAUTH_REQUEST_TOKEN_PATH</key>
+	<string>oauth/request_token</string>
+	<key>OAUTH_AUTHENTICATE_REQ_TOKEN_PATH</key>
+	<string>oauth/authenticate?oauth_token=</string>
 </dict>
 </plist>

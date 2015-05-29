@@ -9,29 +9,35 @@
 import UIKit
 //import CoreData
 
+let plistContent = NSDictionary(contentsOfURL: NSBundle.mainBundle().URLForResource("custom", withExtension: "plist")!)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        UILabel.appearance().font = UIFont.budgie_primaryFont()
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName:UIFont.budgie_primaryFont()]
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
-        
+
         if User.currentUser != nil {
             // Go to the Logged in Screen
             println("Current User Detected: \(User.currentUser?.name)")
-            var vc = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! UIViewController
-            window?.rootViewController = vc
+            TwitterClient.sharedInstance.requestRateLimitStatus({ (success) -> () in
+                window?.rootViewController = (storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! UIViewController)
+            })
+            
         }
         return true
     }
     
     func userDidLogout() {
-        var vc = storyboard.instantiateInitialViewController() as! UIViewController
-        window?.rootViewController = vc
+
+        window?.rootViewController = (storyboard.instantiateInitialViewController() as! UIViewController)
     }
 
     func applicationWillResignActive(application: UIApplication) {

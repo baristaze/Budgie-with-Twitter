@@ -19,6 +19,7 @@ class BudgieProfileViewController: UIViewController {
     @IBOutlet var friendsCountLabel: UILabel!
     @IBOutlet var followersCountLabel: UILabel!
     
+    @IBOutlet var logOutButton: UIButton!
     
     @IBAction func onLogout(sender: AnyObject) {
         TwitterClient.sharedInstance.resetClient()
@@ -42,6 +43,8 @@ class BudgieProfileViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
         profileImageView.layer.borderWidth = 3
         profileImageView.clipsToBounds = true
+        logOutButton.tintColor = UIColor.budgieBlue()
+        
 
     }
 

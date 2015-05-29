@@ -10,8 +10,6 @@ import UIKit
 
 class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BudgieTweetCellDelegate, BudgieComposeTweetViewControllerDelegate {
     
-    private let blueColor: UIColor = UIColor(red: (88.0 / 255.0), green: (145.0 / 255.0), blue: (211.0 / 255.0), alpha: 1)
-    private let yellowColor: UIColor = UIColor(red: (252.0 / 255.0), green: (248.0 / 255.0), blue: (197.0 / 255.0), alpha: 1)
     private var tableViewRefreshControl: UIRefreshControl!
     private var loadingView: UIActivityIndicatorView!
     
@@ -27,6 +25,8 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     private var replyTweetId: String?
     private var replyUserNamed: String?
     
+    private var isInitialLoad: Bool!
+    
     struct Search {
         var limit: Int = 20
         var offset: Int = 0
@@ -40,8 +40,10 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         var notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "reloadTableView", name: "shouldReloadTableViewNotification", object: nil)
+
         
-        self.navigationController?.navigationBar.barTintColor = blueColor
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.budgieBlue()
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "LaunchImageTitle"))
         
         newSearch = Search()
@@ -49,7 +51,7 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 120
+        tableView.estimatedRowHeight = 140
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // Adds RefreshControl
@@ -65,16 +67,23 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         tableFooterView.addSubview(loadingView)
         tableView.tableFooterView = tableFooterView
         
+        isInitialLoad = true
+        
+        tweets = TwitterClient.sharedInstance.demoTweets()
+        lastSearchCount = self.tweets?.count
+        tableView.reloadData()
+        
         loadTweets(newSearch)
+
 
     }
     
     override func viewDidAppear(animated: Bool) {
         println("BudgieHomeViewController: viewDidAppear")
         super.viewDidAppear(true)
-//        newSearch = lastSearch
-//        loadTweets(newSearch)
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
     }
+
     
     func reloadTableView() {
         self.tableView.reloadData()
@@ -89,7 +98,9 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func loadTweets(params: Search!) {
-        TwitterClient.sharedInstance.homeTimelineWithParams(params.offset, params: nil, completion: { (tweets, error) -> () in
+        MRProgressOverlayView.showOverlayAddedTo(self.view, title: "", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
+        
+        TwitterClient.sharedInstance.homeTimelineWithParams(params.offset, params: nil, completion: { (success, tweets, error) -> () in
             if error == nil && tweets != nil {
                 if self.tweets == nil || params.offset == 0{
                     self.tweets = tweets
@@ -101,10 +112,13 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.lastSearch = params
                 self.lastSearchCount = self.tweets?.count
                 self.tableView.reloadData()
+                var demoTweets = 
+                MRProgressOverlayView.dismissOverlayForView(self.view, animated: true)
             } else {
                 println("Error loading Tweets for HomeTimeLine: \(error)")
                 self.tableViewRefreshControl.endRefreshing()
                 self.tableView.reloadData()
+                MRProgressOverlayView.dismissOverlayForView(self.view, animated: true)
             }
             self.tableView.scrollEnabled = true
         })

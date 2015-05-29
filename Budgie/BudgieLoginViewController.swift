@@ -11,23 +11,29 @@ import UIKit
 
 
 class BudgieLoginViewController: UIViewController {
-
+    
     @IBAction func onLoginButton(sender: AnyObject) {
-        TwitterClient.sharedInstance.loginWithCompletion() { (user: User?, error: NSError?) in
-            if user != nil {
+        TwitterClient.sharedInstance.loginWithCompletion() { (success: Bool, user: User?, error: NSError?) in
+            
+            if success && user != nil {
                 self.performSegueWithIdentifier("loginSegue", sender: self)
             } else {
-                // handle error
+                var alert = UIAlertController(title: "Error Login User", message: "Try Again", preferredStyle: UIAlertControllerStyle.Alert)
+                var action = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) -> Void in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+                alert.addAction(action)
+                self.presentViewController(alert, animated: true, completion: nil)
+                println(error)
             }
         }
         
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        self.view.backgroundColor = UIColor(red: (88.0 / 255.0), green: (145.0 / 255.0), blue: (211.0 / 255.0), alpha: 1)
-        // Do any additional setup after loading the view, typically from a nib.
-
+        self.view.backgroundColor = UIColor.budgieBlue()
     }
 
 

@@ -16,7 +16,6 @@ class BudgieTweetDetailsViewController: UIViewController, UITableViewDataSource,
             self.replyUserNamed = tweet.user?.screenName
         }
     }
-    private let yellowColor: UIColor = UIColor(red: (252.0 / 255.0), green: (248.0 / 255.0), blue: (197.0 / 255.0), alpha: 1)
     private var replyTweetId: String?
     private var replyUserNamed: String?
     private let budgieDetailHeaderCellReuseIdentifier = "budgieDetailHeaderCell"
@@ -37,7 +36,7 @@ class BudgieTweetDetailsViewController: UIViewController, UITableViewDataSource,
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        tableView.backgroundColor = yellowColor.colorWithAlphaComponent(0.5)
+        tableView.backgroundColor = UIColor.budgieYellow().colorWithAlphaComponent(0.5)
         tableView.reloadData()
     }
 

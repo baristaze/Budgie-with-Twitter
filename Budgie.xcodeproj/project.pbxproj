@@ -15,6 +15,7 @@
 		1639DAD01B0A5E3D00DC3217 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1639DACF1B0A5E3D00DC3217 /* Images.xcassets */; };
 		1639DAD31B0A5E3D00DC3217 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1639DAD11B0A5E3D00DC3217 /* LaunchScreen.xib */; };
 		1639DADF1B0A5E3D00DC3217 /* BudgieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639DADE1B0A5E3D00DC3217 /* BudgieTests.swift */; };
+		16A91D711B168DA100C07E20 /* UIFont+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A91D701B168DA100C07E20 /* UIFont+Appearance.swift */; };
 		16B13F791B0BA2A500427476 /* custom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16B13F781B0BA2A500427476 /* custom.plist */; };
 		16B13F7D1B0BB01000427476 /* BudgieHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */; };
 		16B13F7F1B0BC0D000427476 /* BudgieTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F7E1B0BC0D000427476 /* BudgieTweetCell.swift */; };
@@ -52,6 +53,7 @@
 		1639DAD81B0A5E3D00DC3217 /* BudgieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1639DADD1B0A5E3D00DC3217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1639DADE1B0A5E3D00DC3217 /* BudgieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgieTests.swift; sourceTree = "<group>"; };
+		16A91D701B168DA100C07E20 /* UIFont+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Appearance.swift"; sourceTree = "<group>"; };
 		16B13F781B0BA2A500427476 /* custom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = custom.plist; sourceTree = "<group>"; };
 		16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieHomeViewController.swift; sourceTree = "<group>"; };
 		16B13F7E1B0BC0D000427476 /* BudgieTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieTweetCell.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		1639DAC21B0A5E3D00DC3217 /* Budgie */ = {
 			isa = PBXGroup;
 			children = (
+				16A91D721B168E0000C07E20 /* Appearance */,
 				1639DAC51B0A5E3D00DC3217 /* AppDelegate.swift */,
 				16B591251B0A617100C63812 /* API */,
 				16B591261B0A617E00C63812 /* Models */,
@@ -150,6 +153,14 @@
 				1639DADD1B0A5E3D00DC3217 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		16A91D721B168E0000C07E20 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				16A91D701B168DA100C07E20 /* UIFont+Appearance.swift */,
+			);
+			name = Appearance;
 			sourceTree = "<group>";
 		};
 		16B13F7A1B0BA48A00427476 /* ViewControllers */ = {
@@ -367,6 +378,7 @@
 				16B5912A1B0A814B00C63812 /* User.swift in Sources */,
 				1639DAC91B0A5E3D00DC3217 /* Budgie.xcdatamodeld in Sources */,
 				160CB1EE1B0D0A2C002E35E7 /* BudgieComposeTweetViewController.swift in Sources */,
+				16A91D711B168DA100C07E20 /* UIFont+Appearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
