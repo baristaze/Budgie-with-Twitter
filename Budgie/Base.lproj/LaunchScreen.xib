@@ -19,7 +19,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImageTitle" translatesAutoresizingMaskIntoConstraints="NO" id="QWS-GI-xSQ">
                     <rect key="frame" x="143" y="81" width="195" height="36"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LuangImageBudgie_2" translatesAutoresizingMaskIntoConstraints="NO" id="F42-HU-iDq">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImageBudgie_2" translatesAutoresizingMaskIntoConstraints="NO" id="F42-HU-iDq">
                     <rect key="frame" x="175" y="149" width="131" height="183"/>
                 </imageView>
             </subviews>
@@ -39,7 +39,7 @@
         </view>
     </objects>
     <resources>
+        <image name="LaunchImageBudgie_2" width="131" height="183"/>
         <image name="LaunchImageTitle" width="195" height="36"/>
-        <image name="LuangImageBudgie_2" width="131" height="183"/>
     </resources>
 </document>

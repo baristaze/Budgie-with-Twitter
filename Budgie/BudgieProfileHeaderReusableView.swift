@@ -103,12 +103,35 @@ class BudgieProfileHeaderReusableView: UICollectionReusableView, UIScrollViewDel
     override func awakeFromNib() {
         super.awakeFromNib()
         segmentedControl.addTarget(self, action: "onSegmentedControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        scrollView.panGestureRecognizer.addTarget(self, action: "onScrollViewPanGesture:")
         blurEffectView.alpha = 0.0
 
     }
     
     func onSegmentedControlAction(sender: UISegmentedControl) {
         delegate?.budgieProfileHeaderReusableView!(self, segmentedControl: sender, didChangeSelectedIndex: sender.selectedSegmentIndex)
+    }
+    
+    
+    func onScrollViewPanGesture(sender: UIPanGestureRecognizer) {
+        var alphaIncrement: CGFloat = 0.02
+        var velocity = sender.velocityInView(self)
+        var translation = sender.translationInView(self)
+        var location = sender.locationInView(self)
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            self.scrollView.alpha = 1.0
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            println("Velocity: \(velocity)   Transalation: \(translation)")
+            if translation.x != 0  && scrollView.alpha > 0.2 {
+                self.scrollView.alpha -= alphaIncrement
+            }
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.scrollView.alpha = 1.0
+            })
+            
+        }
     }
     
     func onPanGestureRecognizer(sender: UIPanGestureRecognizer) {
@@ -123,7 +146,6 @@ class BudgieProfileHeaderReusableView: UICollectionReusableView, UIScrollViewDel
             self.parentCollectionView.clipsToBounds = false
             self.clipsToBounds = false
         } else if sender.state == UIGestureRecognizerState.Changed {
-            println("Velocity: \(velocity)   Transalation: \(translation)")
             if translation.y >  0 {
                 if velocity.y > 0 && blurEffectView.alpha < 1 {
                     blurEffectView.alpha += alphaIncrement

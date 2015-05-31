@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var storyboard = UIStoryboard(name: "Main", bundle: nil)
+    var tempImageView: UIImageView?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -24,20 +25,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = UIColor.budgieBlue()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        
 
         if User.currentUser != nil {
             // Go to the Logged in Screen
             println("Current User Detected: \(User.currentUser?.name)")
             TwitterClient.sharedInstance.requestRateLimitStatus({ (success) -> () in
-                window?.rootViewController = (storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! UIViewController)
+                self.tempImageView = UIImageView(frame: self.window!.bounds)
+                self.tempImageView!.image = UIImage(named: "LauchImageFullScreen")!
+                self.window?.addSubview(self.tempImageView!)
+                self.tempImageView!.center = self.window!.center
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                        self.tempImageView?.transform = CGAffineTransformMakeScale(10.0, 10.0)
+                        self.tempImageView?.alpha = 0.0
+                    }, completion: { (success:Bool) -> Void in
+                        self.tempImageView?.transform = CGAffineTransformMakeScale(0, 0)
+                        self.tempImageView?.removeFromSuperview()
+                        self.window?.rootViewController = (self.storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! UIViewController)
+                })
             })
-            
         }
         return true
     }
     
+    
     func userDidLogout() {
-
         window?.rootViewController = (storyboard.instantiateInitialViewController() as! UIViewController)
     }
 
@@ -69,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
 //        self.saveContext()
     }
+    
 
 //    // MARK: - Core Data stack
 //

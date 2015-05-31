@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LuangImageBudgie_2" translatesAutoresizingMaskIntoConstraints="NO" id="SDh-et-aOz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImageBudgie_2" translatesAutoresizingMaskIntoConstraints="NO" id="SDh-et-aOz">
                                 <rect key="frame" x="235" y="209" width="131" height="183"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3G-SS-nvy">
@@ -54,6 +54,9 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="budgieImage" destination="SDh-et-aOz" id="ng8-bA-7DG"/>
+                        <outlet property="loginImage" destination="n3G-SS-nvy" id="2HR-oq-1Vd"/>
+                        <outlet property="titleImage" destination="JEq-GQ-bUr" id="0mG-62-fI1"/>
                         <segue destination="Gf3-nd-M8s" kind="presentation" identifier="loginSegue" id="FdO-Fk-Oxm"/>
                     </connections>
                 </viewController>
@@ -2904,8 +2907,8 @@
     </scenes>
     <resources>
         <image name="BudgieIcon" width="60" height="60"/>
+        <image name="LaunchImageBudgie_2" width="131" height="183"/>
         <image name="LaunchImageTitle" width="195" height="36"/>
-        <image name="LuangImageBudgie_2" width="131" height="183"/>
         <image name="MentionsIcon" width="31" height="32"/>
         <image name="ProfileIcon_2" width="26" height="32"/>
         <image name="SearchIcon" width="31" height="32"/>

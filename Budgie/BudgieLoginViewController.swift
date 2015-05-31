@@ -30,11 +30,24 @@ class BudgieLoginViewController: UIViewController {
         
     }
     
+    @IBOutlet var titleImage: UIImageView!
+    @IBOutlet var budgieImage: UIImageView!
+    @IBOutlet var loginImage: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userForProfile = nil
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         self.view.backgroundColor = UIColor.budgieBlue()
+        if User.currentUser != nil {
+            titleImage.alpha = 0
+            budgieImage.alpha = 0
+            loginImage.alpha = 0
+        } else {
+            titleImage.alpha = 1
+            budgieImage.alpha = 1
+            loginImage.alpha = 1
+        }
     }
 
 
