@@ -56,7 +56,10 @@ Time spent: `21 hours` (Week-2) `21 hours` (Week-1)
 - [X] Added Mentions page similar to the Home Timeline
 - [X] Added Search Page
 	- [X] User can search both Tweets and Users (using a segmentedControl)
-- [X] Added activity indicators where Data Load is required
+- [X] [Twitter API] Added methods to: searchTweets, searchUsers, parseSearchQuery, requestFriendList, requestMentionTimeline, requestUserTimeline and requestUserMedia.
+- [X] Created custom.plist to store global constants (i.e. secret keys, consumer key, base url, url paths…)
+- [X] App saves last tweets requested (using NSUserDefaults) as timeline "placeHolders" in case the next time the App runs there is no conectivity
+- [X] Added activity indicators  (usign MRProgress Library) where Data Load is required
 - [X] Includes custom Launch Screen & App Icons for each device size
 
 (WEEK 1)
