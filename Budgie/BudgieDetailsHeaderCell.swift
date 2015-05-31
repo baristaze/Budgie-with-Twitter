@@ -16,7 +16,7 @@ class BudgieDetailsHeaderCell: UITableViewCell {
     @IBOutlet var tweetTextLabel: UILabel!
     @IBOutlet var createdAtLabel: UILabel!
 
-    
+    private var formatter: NSDateFormatter!
     
     var tweet: Tweet! {
         didSet {
@@ -24,7 +24,13 @@ class BudgieDetailsHeaderCell: UITableViewCell {
             nameLabel.text = tweet.user?.name
             screenNameLabel.text = "@\(tweet.user!.screenName!)"
             tweetTextLabel.text = tweet.text
-            createdAtLabel.text = tweet.text
+            formatter = NSDateFormatter()
+            formatter.dateFormat = "HH:mm"
+            var time = formatter.stringFromDate(tweet.createdAt!)
+            formatter.dateFormat = "MM/dd/yy"
+            var date = formatter.stringFromDate(tweet.createdAt!)
+            var dateToDisplay = "Tweet created at " + time + " on " + date
+            createdAtLabel.text = dateToDisplay
         }
     }
     

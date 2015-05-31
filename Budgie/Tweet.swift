@@ -20,6 +20,7 @@ class Tweet: NSObject {
     var favoriteCount: Int?
     var isRetweeted: Bool?
     var isFavorited: Bool?
+    var mediaURL: String?
     
     init(dictionary: NSDictionary) {
         user = User(dictionary: dictionary["user"] as! NSDictionary)

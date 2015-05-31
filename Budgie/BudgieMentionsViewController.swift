@@ -1,14 +1,14 @@
 //
-//  TweetsViewController.swift
+//  BudgieMentionsViewController.swift
 //  Budgie
 //
-//  Created by Francisco de la Pena on 5/19/15.
+//  Created by Francisco de la Pena on 5/30/15.
 //  Copyright (c) 2015 Twister Labs, LLC. All rights reserved.
 //
 
 import UIKit
 
-class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BudgieTweetCellDelegate, BudgieComposeTweetViewControllerDelegate {
+class BudgieMentionsViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource, BudgieTweetCellDelegate, BudgieComposeTweetViewControllerDelegate {
     
     private var tableViewRefreshControl: UIRefreshControl!
     private var loadingView: UIActivityIndicatorView!
@@ -41,11 +41,11 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         var notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "reloadTableView", name: "shouldReloadTableViewNotification", object: nil)
-
+        
         
         
         self.navigationController?.navigationBar.barTintColor = UIColor.budgieBlue()
-        self.navigationItem.titleView = UIImageView(image: UIImage(named: "BudgieTitle"))
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "MentionsTitle"))
         
         newSearch = Search()
         lastSearch = Search()
@@ -75,8 +75,8 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
         
         loadTweets(newSearch)
-
-
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -85,7 +85,7 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         userForProfile = nil
         self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
     }
-
+    
     
     func reloadTableView() {
         self.tableView.reloadData()
@@ -102,31 +102,47 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     func loadTweets(params: Search!) {
         MRProgressOverlayView.showOverlayAddedTo(self.view, title: "", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
         
-        TwitterClient.sharedInstance.homeTimelineWithParams(params.offset, params: nil, completion: { (success, tweets, error) -> () in
-            if error == nil && tweets != nil {
-                if self.tweets == nil || params.offset == 0{
-                    self.tweets = tweets
-                } else {
-                    self.tweets = self.tweets! + tweets!
-                }
-                println("Total Number of Tweets on memory: \(self.tweets!.count)")
+        TwitterClient.sharedInstance.mentionsTimeLine(nil, completion: { (success, tweets, error) -> () in
+            if success {
+                self.tweets = tweets
                 self.tableViewRefreshControl.endRefreshing()
                 self.lastSearch = params
                 self.lastSearchCount = self.tweets?.count
                 self.tableView.reloadData()
                 MRProgressOverlayView.dismissOverlayForView(self.view, animated: true)
             } else {
-                println("Error loading Tweets for HomeTimeLine: \(error)")
+                println(error)
                 self.tableViewRefreshControl.endRefreshing()
                 self.tableView.reloadData()
                 MRProgressOverlayView.dismissOverlayForView(self.view, animated: true)
             }
-            self.tableView.scrollEnabled = true
         })
+        
+//        TwitterClient.sharedInstance.homeTimelineWithParams(params.offset, params: nil, completion: { (success, tweets, error) -> () in
+//            if error == nil && tweets != nil {
+//                if self.tweets == nil || params.offset == 0{
+//                    self.tweets = tweets
+//                } else {
+//                    self.tweets = self.tweets! + tweets!
+//                }
+//                println("Total Number of Tweets on memory: \(self.tweets!.count)")
+//                self.tableViewRefreshControl.endRefreshing()
+//                self.lastSearch = params
+//                self.lastSearchCount = self.tweets?.count
+//                self.tableView.reloadData()
+//                MRProgressOverlayView.dismissOverlayForView(self.view, animated: true)
+//            } else {
+//                println("Error loading Tweets for HomeTimeLine: \(error)")
+//                self.tableViewRefreshControl.endRefreshing()
+//                self.tableView.reloadData()
+//                MRProgressOverlayView.dismissOverlayForView(self.view, animated: true)
+//            }
+//            self.tableView.scrollEnabled = true
+//        })
     }
-
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "TweetToDetails" {
@@ -141,14 +157,14 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             composeTweetVC.delegate = self
         }
     }
-
-
+    
+    
 }
 
 
 //MARK: UITableViewDelegate
 
-extension BudgieHomeViewController: UITableViewDelegate {
+extension BudgieMentionsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         selectedTweet = tweets![indexPath.row]
@@ -163,7 +179,7 @@ extension BudgieHomeViewController: UITableViewDelegate {
 
 //MARK: UITableViewDataSource
 
-extension BudgieHomeViewController: UITableViewDataSource {
+extension BudgieMentionsViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -184,15 +200,14 @@ extension BudgieHomeViewController: UITableViewDataSource {
             println("New offset: \(newSearch.offset)")
             loadTweets(newSearch)
         }
-
         return cell
     }
     
 }
 
-//MARK: BudgieTweetCellDelegate
+//MARK: BudgieMentionsViewController
 
-extension BudgieHomeViewController: BudgieTweetCellDelegate {
+extension BudgieMentionsViewController: BudgieTweetCellDelegate {
     func budgieTweetCell(budgieTweetCell: BudgieTweetCell, didChangeReTweetedStatus status: Bool) {
         println("didChangeReTweetedStatus")
         let indexPath = self.tableView.indexPathForCell(budgieTweetCell)!
@@ -217,12 +232,11 @@ extension BudgieHomeViewController: BudgieTweetCellDelegate {
         self.tabBarController?.selectedIndex = 3
     }
     
-    
 }
 
 //Mark: BudgieComposeTweetViewControllerDelegate
 
-extension BudgieHomeViewController: BudgieComposeTweetViewControllerDelegate {
+extension BudgieMentionsViewController: BudgieComposeTweetViewControllerDelegate {
     func budgieComposeTweetViewController(budgieComposeTweetViewController: BudgieComposeTweetViewController, didPostNewTweet tweet: Tweet) {
         self.tweets = [tweet] + self.tweets!
         self.tableView.reloadData()

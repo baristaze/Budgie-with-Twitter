@@ -32,6 +32,7 @@ class BudgieLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userForProfile = nil
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         self.view.backgroundColor = UIColor.budgieBlue()
     }

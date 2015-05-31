@@ -8,10 +8,20 @@
 	<string>W2oy2CbeBixLaAUX166tzM4aR7eYLtSLn1G0JeXpg01QzYZG1B</string>
 	<key>TWITTER_BASE_URL</key>
 	<string>https://api.twitter.com/</string>
+	<key>SEARCH_TWEETS_PATH</key>
+	<string>1.1/search/tweets.json</string>
+	<key>SEARCH_USERS_PATH</key>
+	<string>1.1/users/search.json</string>
 	<key>HOME_TIMELINE_PATH</key>
 	<string>1.1/statuses/home_timeline.json</string>
+	<key>MENTIONS_PATH</key>
+	<string>1.1/statuses/mentions_timeline.json</string>
+	<key>USER_TIMELINE_PATH</key>
+	<string>1.1/statuses/user_timeline.json</string>
 	<key>UPDATE_STATUS_PATH</key>
 	<string>1.1/statuses/update.json</string>
+	<key>FRIENDS_LIST_PATH</key>
+	<string>1.1/friends/list.json</string>
 	<key>CREATE_FAVORITE_PATH</key>
 	<string>1.1/favorites/create.json</string>
 	<key>VERIFY_CREDENTIALS_PATH</key>

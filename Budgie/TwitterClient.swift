@@ -20,7 +20,11 @@ let postTweetPath = plistContent?.valueForKey("UPDATE_STATUS_PATH") as! String
 let retweetPath = plistContent?.valueForKey("RETWEET_PATH") as! String
 let favoriteTweetPath = plistContent?.valueForKey("CREATE_FAVORITE_PATH") as! String
 let verifyCredentialsPath = plistContent?.valueForKey("VERIFY_CREDENTIALS_PATH") as! String
-
+let mentionsPath = plistContent?.valueForKey("MENTIONS_PATH") as! String
+let userTimeLinePath = plistContent?.valueForKey("USER_TIMELINE_PATH") as! String
+let friendsListPath = plistContent?.valueForKey("FRIENDS_LIST_PATH") as! String
+let searchTweetsPath = plistContent?.valueForKey("SEARCH_TWEETS_PATH") as! String
+let searchUsersPath = plistContent?.valueForKey("SEARCH_USERS_PATH") as! String
 
 class TwitterClient: BDBOAuth1RequestOperationManager {
     
@@ -34,8 +38,12 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     private var lastCallDidReturn: Bool = true
     
     typealias BudgieHomeTimeLineResponse = (success: Bool, tweets: [Tweet]?, error: NSError?) -> ()
+    typealias BudgieSearchTweetsResponse = (success: Bool, tweets: [Tweet]?, error: NSError?) -> ()
+    typealias BudgieSearchUsersResponse = (success: Bool, users: [User]?, error: NSError?) -> ()
     typealias BudgieTweetResponse = (success: Bool, tweet: Tweet?, error: NSError?) -> ()
     typealias BudgieUserResponse = (success: Bool, user: User?, error: NSError?) -> ()
+    typealias BudgieFriendsResponse = (success: Bool, friends: [User]?, error: NSError?) -> ()
+    typealias BudgieMediaResponse = (success: Bool, media: [String]?, error: NSError?) -> ()
     
     class var sharedInstance: TwitterClient {
         struct Static {
@@ -44,6 +52,97 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         
         return Static.instance
     }
+    
+    func searchTweetsWithQuery(query: String?, params: NSDictionary?, completion: BudgieSearchTweetsResponse) {
+        if query != nil {
+            var formattedQuery = parseQuery(query!)
+            GET(searchTweetsPath, parameters: ["q":formattedQuery, "count":100], success: { (operation:AFHTTPRequestOperation!, response:AnyObject!) -> Void in
+                var result = (response as! NSDictionary)["statuses"] as! [NSDictionary]
+                var tweetsReceived = Tweet.tweetsWithArray(result)
+                completion(success: true, tweets: tweetsReceived, error: nil)
+            }) { (response:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                completion(success: false, tweets: nil, error: error)
+            }
+            
+        } else {
+            completion(success: true, tweets: nil, error: nil)
+        }
+    }
+    
+    func searchUsersWithQuery(query: String?, params: NSDictionary?, completion: BudgieSearchUsersResponse) {
+        if query != nil {
+            var formattedQuery = parseQuery(query!)
+            GET(searchUsersPath, parameters: ["q":formattedQuery, "count":20], success: { (operation:AFHTTPRequestOperation!, response:AnyObject!) -> Void in
+                var result = User.usersWithArray(response as! [NSDictionary])
+                completion(success: true, users: result, error: nil)
+            }) { (response:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                completion(success: false, users: nil, error: error)
+            }
+            
+        } else {
+            completion(success: true, users: nil, error: nil)
+        }
+    }
+    
+    func parseQuery(query: String) -> String {
+        
+        var newQuery = query.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+        newQuery = newQuery.stringByReplacingOccurrencesOfString("#", withString: "%23", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+        newQuery = newQuery.stringByReplacingOccurrencesOfString("@", withString: "%40", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+        newQuery = newQuery.stringByReplacingOccurrencesOfString("\"", withString: "%22", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+        println(newQuery)
+        return newQuery
+    }
+    
+    func friendsList(params: NSDictionary?, completion: BudgieFriendsResponse) {
+        var user = (params!["screen_name"] as? String != nil) ? params!["screen_name"] as? String : User.currentUser!.screenName
+        GET(friendsListPath, parameters: ["screen_name":user!, "count":200], success: { (operation:AFHTTPRequestOperation!, response:AnyObject!) -> Void in
+            var friendsRaw = (response as! NSDictionary)["users"] as! [NSDictionary]
+            var friends = User.usersWithArray(friendsRaw)
+            completion(success: true, friends: friends, error: nil)
+        }) { (response:AFHTTPRequestOperation!, error:NSError!) -> Void in
+            completion(success: false, friends: nil, error: error)
+        }
+        
+    }
+    
+    func mentionsTimeLine(params: NSDictionary?, completion: BudgieHomeTimeLineResponse) {
+        GET(mentionsPath, parameters: ["count":200], success: { (operation:AFHTTPRequestOperation!, response:AnyObject!) -> Void in
+            var mentions = Tweet.tweetsWithArray(response as! [NSDictionary])
+            completion(success: true, tweets: mentions, error: nil)
+        }) { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
+            completion(success: false, tweets: nil, error: error)
+        }
+    }
+    
+    func userMedia(params: NSDictionary?, completion: BudgieMediaResponse) {
+        var user = (params!["screen_name"] as? String != nil) ? params!["screen_name"] as? String : User.currentUser!.screenName
+        GET(userTimeLinePath, parameters: ["screen_name":user!, "count":200], success: { (operation:AFHTTPRequestOperation!, response:AnyObject!) -> Void in
+            
+            var mediaUrlArray = [String]()
+            for item in (response as! [NSDictionary]) {
+                var mediaUrl = item.valueForKeyPath("entities.media.media_url") as? [String]
+                if mediaUrl != nil {
+                    mediaUrlArray.append(mediaUrl![0])
+                }
+            }
+            completion(success: true, media: mediaUrlArray, error: nil)
+            
+        }) { (response:AFHTTPRequestOperation!, error:NSError!) -> Void in
+            completion(success: false, media: nil, error: error)
+        }
+    }
+    
+    func userTimeLine(params: NSDictionary?, completion: BudgieHomeTimeLineResponse) {
+        var user = (params!["screen_name"] as? String != nil) ? params!["screen_name"] as? String : User.currentUser!.screenName
+        GET(userTimeLinePath, parameters: ["screen_name":user!, "count":200], success: { (operation:AFHTTPRequestOperation!, response:AnyObject!) -> Void in
+            var timeLine = Tweet.tweetsWithArray(response as! [NSDictionary])
+            completion(success: true, tweets: timeLine, error: nil)
+        }) { (response:AFHTTPRequestOperation!, error:NSError!) -> Void in
+            completion(success: false, tweets: nil, error: error)
+        }
+    }
+    
     
     func demoTweets() -> ([Tweet]?) {
         

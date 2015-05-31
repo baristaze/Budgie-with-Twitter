@@ -19,8 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        UILabel.appearance().font = UIFont.budgie_primaryFont()
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName:UIFont.budgie_primaryFont()]
+        //UILabel.appearance().font = UIFont.budgie_primaryFont()
+        //UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName:UIFont.budgie_primaryFont()]
+        UINavigationBar.appearance().backgroundColor = UIColor.budgieBlue()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
 

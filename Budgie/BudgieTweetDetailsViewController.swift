@@ -27,7 +27,8 @@ class BudgieTweetDetailsViewController: UIViewController, UITableViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 300
@@ -36,6 +37,7 @@ class BudgieTweetDetailsViewController: UIViewController, UITableViewDataSource,
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        userForProfile = nil
         tableView.backgroundColor = UIColor.budgieYellow().colorWithAlphaComponent(0.5)
         tableView.reloadData()
     }

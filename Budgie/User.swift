@@ -73,4 +73,13 @@ class User: NSObject {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    
+    class func usersWithArray(array: [NSDictionary]) -> [User] {
+        var users = [User]()
+        
+        for dictionary in array {
+            users.append(User(dictionary: dictionary))
+        }
+        return users
+    }
 }

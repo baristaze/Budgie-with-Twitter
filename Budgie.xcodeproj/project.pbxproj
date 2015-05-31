@@ -15,6 +15,17 @@
 		1639DAD01B0A5E3D00DC3217 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1639DACF1B0A5E3D00DC3217 /* Images.xcassets */; };
 		1639DAD31B0A5E3D00DC3217 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1639DAD11B0A5E3D00DC3217 /* LaunchScreen.xib */; };
 		1639DADF1B0A5E3D00DC3217 /* BudgieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639DADE1B0A5E3D00DC3217 /* BudgieTests.swift */; };
+		164A299F1B1A970F0092E0F3 /* BudgieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A299E1B1A970F0092E0F3 /* BudgieSearchViewController.swift */; };
+		164A29A11B1AA60E0092E0F3 /* BudgieSearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A29A01B1AA60E0092E0F3 /* BudgieSearchUserCell.swift */; };
+		165848A01B1A2AD300D217A4 /* BudgieMenuProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658489F1B1A2AD300D217A4 /* BudgieMenuProfileCell.swift */; };
+		165848A21B1A494500D217A4 /* BudgieMentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165848A11B1A494500D217A4 /* BudgieMentionsViewController.swift */; };
+		165848A61B1A504300D217A4 /* BudgieProfileGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165848A51B1A504300D217A4 /* BudgieProfileGalleryCell.swift */; };
+		165848A81B1A505700D217A4 /* BudgieProfileFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165848A71B1A505700D217A4 /* BudgieProfileFriendsCell.swift */; };
+		165848AA1B1A507200D217A4 /* BudgieProfileUserTweetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165848A91B1A507200D217A4 /* BudgieProfileUserTweetsCell.swift */; };
+		168B1A271B194D6D008A21F1 /* BudgieAltProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168B1A261B194D6D008A21F1 /* BudgieAltProfileCollectionViewController.swift */; };
+		168B1A291B19533A008A21F1 /* BudgieHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168B1A281B19533A008A21F1 /* BudgieHeaderReusableView.swift */; };
+		168B1A2B1B19534E008A21F1 /* BudgieFooterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168B1A2A1B19534E008A21F1 /* BudgieFooterReusableView.swift */; };
+		168B1A311B1963C9008A21F1 /* BudgieMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168B1A301B1963C9008A21F1 /* BudgieMenuViewController.swift */; };
 		16A91D711B168DA100C07E20 /* UIFont+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A91D701B168DA100C07E20 /* UIFont+Appearance.swift */; };
 		16B13F791B0BA2A500427476 /* custom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16B13F781B0BA2A500427476 /* custom.plist */; };
 		16B13F7D1B0BB01000427476 /* BudgieHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */; };
@@ -27,6 +38,8 @@
 		16B591281B0A61C900C63812 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B591271B0A61C900C63812 /* TwitterClient.swift */; };
 		16B5912A1B0A814B00C63812 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B591291B0A814B00C63812 /* User.swift */; };
 		16B5912C1B0A815900C63812 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B5912B1B0A815900C63812 /* Tweet.swift */; };
+		16F5980A1B17F8FF0022637B /* BudgieProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F598091B17F8FF0022637B /* BudgieProfileCollectionViewController.swift */; };
+		16F5980C1B17FC310022637B /* BudgieProfileHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5980B1B17FC310022637B /* BudgieProfileHeaderReusableView.swift */; };
 		261238C5F3D298B84FA22666 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC63E5ED735F8DAD04838549 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +66,17 @@
 		1639DAD81B0A5E3D00DC3217 /* BudgieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1639DADD1B0A5E3D00DC3217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1639DADE1B0A5E3D00DC3217 /* BudgieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgieTests.swift; sourceTree = "<group>"; };
+		164A299E1B1A970F0092E0F3 /* BudgieSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieSearchViewController.swift; sourceTree = "<group>"; };
+		164A29A01B1AA60E0092E0F3 /* BudgieSearchUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieSearchUserCell.swift; sourceTree = "<group>"; };
+		1658489F1B1A2AD300D217A4 /* BudgieMenuProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieMenuProfileCell.swift; sourceTree = "<group>"; };
+		165848A11B1A494500D217A4 /* BudgieMentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieMentionsViewController.swift; sourceTree = "<group>"; };
+		165848A51B1A504300D217A4 /* BudgieProfileGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieProfileGalleryCell.swift; sourceTree = "<group>"; };
+		165848A71B1A505700D217A4 /* BudgieProfileFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieProfileFriendsCell.swift; sourceTree = "<group>"; };
+		165848A91B1A507200D217A4 /* BudgieProfileUserTweetsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieProfileUserTweetsCell.swift; sourceTree = "<group>"; };
+		168B1A261B194D6D008A21F1 /* BudgieAltProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieAltProfileCollectionViewController.swift; sourceTree = "<group>"; };
+		168B1A281B19533A008A21F1 /* BudgieHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieHeaderReusableView.swift; sourceTree = "<group>"; };
+		168B1A2A1B19534E008A21F1 /* BudgieFooterReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieFooterReusableView.swift; sourceTree = "<group>"; };
+		168B1A301B1963C9008A21F1 /* BudgieMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieMenuViewController.swift; sourceTree = "<group>"; };
 		16A91D701B168DA100C07E20 /* UIFont+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Appearance.swift"; sourceTree = "<group>"; };
 		16B13F781B0BA2A500427476 /* custom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = custom.plist; sourceTree = "<group>"; };
 		16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieHomeViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +90,8 @@
 		16B591271B0A61C900C63812 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		16B591291B0A814B00C63812 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		16B5912B1B0A815900C63812 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		16F598091B17F8FF0022637B /* BudgieProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieProfileCollectionViewController.swift; sourceTree = "<group>"; };
+		16F5980B1B17FC310022637B /* BudgieProfileHeaderReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgieProfileHeaderReusableView.swift; sourceTree = "<group>"; };
 		DC63E5ED735F8DAD04838549 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE3E614F0A98C0958DEEE7C6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FD73C2BA77F7D72E7AFEA167 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,9 +194,14 @@
 			children = (
 				1639DACA1B0A5E3D00DC3217 /* BudgieLoginViewController.swift */,
 				16B13F7C1B0BB01000427476 /* BudgieHomeViewController.swift */,
+				165848A11B1A494500D217A4 /* BudgieMentionsViewController.swift */,
+				164A299E1B1A970F0092E0F3 /* BudgieSearchViewController.swift */,
 				16B13F821B0BC2EE00427476 /* BudgieProfileViewController.swift */,
+				16F598091B17F8FF0022637B /* BudgieProfileCollectionViewController.swift */,
 				16B13F841B0C310100427476 /* BudgieTweetDetailsViewController.swift */,
 				160CB1ED1B0D0A2C002E35E7 /* BudgieComposeTweetViewController.swift */,
+				168B1A261B194D6D008A21F1 /* BudgieAltProfileCollectionViewController.swift */,
+				168B1A301B1963C9008A21F1 /* BudgieMenuViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -190,6 +221,14 @@
 				16B13F911B0C369800427476 /* BudgieDetailsActionsCell.swift */,
 				16B13F8D1B0C365E00427476 /* BudgieDetailsEmptyCell.swift */,
 				16B13F7E1B0BC0D000427476 /* BudgieTweetCell.swift */,
+				16F5980B1B17FC310022637B /* BudgieProfileHeaderReusableView.swift */,
+				168B1A281B19533A008A21F1 /* BudgieHeaderReusableView.swift */,
+				168B1A2A1B19534E008A21F1 /* BudgieFooterReusableView.swift */,
+				1658489F1B1A2AD300D217A4 /* BudgieMenuProfileCell.swift */,
+				165848A51B1A504300D217A4 /* BudgieProfileGalleryCell.swift */,
+				165848A71B1A505700D217A4 /* BudgieProfileFriendsCell.swift */,
+				165848A91B1A507200D217A4 /* BudgieProfileUserTweetsCell.swift */,
+				164A29A01B1AA60E0092E0F3 /* BudgieSearchUserCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -365,20 +404,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				16B591281B0A61C900C63812 /* TwitterClient.swift in Sources */,
+				168B1A291B19533A008A21F1 /* BudgieHeaderReusableView.swift in Sources */,
 				16B13F7F1B0BC0D000427476 /* BudgieTweetCell.swift in Sources */,
+				16F5980A1B17F8FF0022637B /* BudgieProfileCollectionViewController.swift in Sources */,
 				1639DACB1B0A5E3D00DC3217 /* BudgieLoginViewController.swift in Sources */,
 				1639DAC61B0A5E3D00DC3217 /* AppDelegate.swift in Sources */,
+				164A29A11B1AA60E0092E0F3 /* BudgieSearchUserCell.swift in Sources */,
 				16B13F921B0C369800427476 /* BudgieDetailsActionsCell.swift in Sources */,
 				16B13F831B0BC2EE00427476 /* BudgieProfileViewController.swift in Sources */,
 				16B5912C1B0A815900C63812 /* Tweet.swift in Sources */,
 				16B13F871B0C357400427476 /* BudgieDetailsHeaderCell.swift in Sources */,
+				165848A01B1A2AD300D217A4 /* BudgieMenuProfileCell.swift in Sources */,
+				16F5980C1B17FC310022637B /* BudgieProfileHeaderReusableView.swift in Sources */,
+				168B1A271B194D6D008A21F1 /* BudgieAltProfileCollectionViewController.swift in Sources */,
 				16B13F8E1B0C365E00427476 /* BudgieDetailsEmptyCell.swift in Sources */,
+				165848A81B1A505700D217A4 /* BudgieProfileFriendsCell.swift in Sources */,
 				16B13F7D1B0BB01000427476 /* BudgieHomeViewController.swift in Sources */,
+				165848A21B1A494500D217A4 /* BudgieMentionsViewController.swift in Sources */,
 				16B13F851B0C310100427476 /* BudgieTweetDetailsViewController.swift in Sources */,
 				16B5912A1B0A814B00C63812 /* User.swift in Sources */,
+				165848A61B1A504300D217A4 /* BudgieProfileGalleryCell.swift in Sources */,
+				165848AA1B1A507200D217A4 /* BudgieProfileUserTweetsCell.swift in Sources */,
+				168B1A311B1963C9008A21F1 /* BudgieMenuViewController.swift in Sources */,
 				1639DAC91B0A5E3D00DC3217 /* Budgie.xcdatamodeld in Sources */,
 				160CB1EE1B0D0A2C002E35E7 /* BudgieComposeTweetViewController.swift in Sources */,
+				168B1A2B1B19534E008A21F1 /* BudgieFooterReusableView.swift in Sources */,
 				16A91D711B168DA100C07E20 /* UIFont+Appearance.swift in Sources */,
+				164A299F1B1A970F0092E0F3 /* BudgieSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

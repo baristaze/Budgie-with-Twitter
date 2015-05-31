@@ -12,9 +12,9 @@ import UIKit
     optional func budgieTweetCell(budgieTweetCell: BudgieTweetCell, didChangeFavoriteStatus status: Bool)
     optional func budgieTweetCell(budgieTweetCell: BudgieTweetCell, didChangeReTweetedStatus status: Bool)
     optional func budgieTweetCell(budgieTweetCell: BudgieTweetCell, didPressReplyTweetId tweetId: String, fromUserNamed: String)
+    optional func budgieTweetCell(budgieTweetCell: BudgieTweetCell, didTapOnImageForUser user: User)
 }
 
-@IBDesignable
 class BudgieTweetCell: UITableViewCell {
 
     @IBOutlet var profileImageView: UIImageView!
@@ -36,6 +36,9 @@ class BudgieTweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             profileImageView.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
+            profileImageView.userInteractionEnabled = true
+            var tapRecognizer = UITapGestureRecognizer(target: self, action: "onProfileImageTapped")
+            profileImageView.addGestureRecognizer(tapRecognizer)
             nameLabel.text = tweet.user?.name
             screenNameLabel.text = "@\(tweet.user!.screenName!)"
             tweetTextLabel.text = tweet.text
@@ -58,6 +61,10 @@ class BudgieTweetCell: UITableViewCell {
             }
         }
         
+    }
+    
+    func onProfileImageTapped() {
+        self.delegate?.budgieTweetCell!(self, didTapOnImageForUser: tweet.user!)
     }
    
     @IBAction func onReply(sender: AnyObject) {
