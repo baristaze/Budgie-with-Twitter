@@ -29,7 +29,7 @@ Time spent: `21 hours` (Week-2) `21 hours` (Week-1)
 (WEEK 2)
 - [X] [Profile Page] Implements the paging view for the user description. (scroll horizontally)
 - [ ] [Profile Page] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
-- [ ] [Profile Page] Pulling down the profile page should blur and resize the header image.
+- [X] [Profile Page] Pulling down the profile page should blur and resize the header image.
 - [ ] Account switching
 	- [ ] Long press on tab bar to bring up Account view with animation
 	- [ ] Tap account to switch to
