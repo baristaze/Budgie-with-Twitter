@@ -2,12 +2,20 @@
 ## Twitter Client
 This is a Twitter client for iOS to read and compose tweets using the [Twitter API](https://apps.twitter.com/).
 
-Time spent: `21 hours`
+Time spent: `21 hours` (Week-2) `21 hours` (Week-1) 
 
 ### Features
 
 #### Required
+(WEEK 2)
+- [X] [Hamburguer Menu] Dragging anywhere in any view reveals the menu.
+- [X] [Hamburguer Menu] The menu includes links to your profile, the home timeline, the mentions, Search, Switch Accounts, Settings (not available yet) views and LogOut.
+- [X] [Hamburguer Menu] The menu looks similar to the LinkedIn menu.
+- [X] [Profile Page] Contains the user header view
+- [X] [Profile Page] Contains a section with the users basic stats: # following, # followers
+- [X] Tapping on a user image brings up that user's profile page
 
+(WEEK 1)
 - [X] User can sign in using OAuth login flow
 - [X] User can view last 20 tweets from their home timeline
 - [X] The current signed in user will be persisted across restarts
@@ -18,7 +26,17 @@ Time spent: `21 hours`
 - [X] User can retweet, favorite, and reply to the tweet directly from the timeline feed.
 
 #### Optional
+(WEEK 2)
+- [X] [Profile Page] Implements the paging view for the user description. (scroll horizontally)
+- [ ] [Profile Page] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+- [ ] [Profile Page] Pulling down the profile page should blur and resize the header image.
+- [ ] Account switching
+	- [ ] Long press on tab bar to bring up Account view with animation
+	- [ ] Tap account to switch to
+	- [ ] Include a plus button to Add an Account
+	- [ ] Swipe to delete an account 
 
+(WEEK 1)
 - [X] When composing, you should have a countdown in the upper right for the tweet limit.
 - [X] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
 - [X] Retweeting and favoriting should increment the retweet and favorite count.
@@ -27,6 +45,21 @@ Time spent: `21 hours`
 - [X] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 #### Additional
+(WEEK 2)
+- [X] [Profile Page] The lower part of the Profile Page is a Collection View that can display "Last User Tweets", "Media Gallery" and "Friends List".
+	- [X] Switch from one section to another using a segmented control
+	- [X] Each Section has a different LayOut
+	- [X] Each Section has a custom made Collection View Cell
+	- [X] Taping in a User from the friends list will reload the profile page with that user info
+- [X] [Hamburger Menu] Added Bouncing effect when "opening/closing" the menu
+- [X] Tab Bar include links to: Home Timeline, Mentions, Search And Profile
+- [X] Added Mentions page similar to the Home Timeline
+- [X] Added Search Page
+	- [X] User can search both Tweets and Users (using a segmentedControl)
+- [X] Added activity indicators where Data Load is required
+- [X] Includes custom Launch Screen & App Icons for each device size
+
+(WEEK 1)
 - [X] Implemented simple pseudo-cache on Twitter Client to reduce number of calls to API
 	- Internal methods of BudgieApp always request 20 tweets at a time
 	- Budgie’s Internal Client always request 200 tweets from Twitter API (max. allowed)
@@ -39,8 +72,8 @@ Time spent: `21 hours`
 
 ### Walkthrough
 
-![Video Walkthrough](http://i.imgur.com/6oXgJFu.gif)
-![Video Walkthrough](http://i.imgur.com/FnRkEie.gif)
+![Video Walkthrough]()
+![Video Walkthrough]()
 
 Credits
 ---------
