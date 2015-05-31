@@ -38,7 +38,18 @@ class BudgieProfileHeaderReusableView: UICollectionReusableView, UIScrollViewDel
     
     @IBOutlet var segmentedControl: UISegmentedControl!
     
+    @IBOutlet var blurEffectView: UIVisualEffectView!
+    
+    private var scale: CGFloat = 1.0
+    
     private var views: [UIView]!
+    
+    var parentCollectionView: UICollectionView! {
+        didSet {
+            parentCollectionView.panGestureRecognizer.addTarget(self, action: "onPanGestureRecognizer:")
+            scale = 1.0
+        }
+    }
     
     var user: User! {
         didSet{
@@ -55,7 +66,6 @@ class BudgieProfileHeaderReusableView: UICollectionReusableView, UIScrollViewDel
             profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
             profileImageView.layer.borderWidth = 3
             profileImageView.clipsToBounds = true
-            
         }
     }
     
@@ -93,10 +103,58 @@ class BudgieProfileHeaderReusableView: UICollectionReusableView, UIScrollViewDel
     override func awakeFromNib() {
         super.awakeFromNib()
         segmentedControl.addTarget(self, action: "onSegmentedControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        blurEffectView.alpha = 0.0
+
     }
     
     func onSegmentedControlAction(sender: UISegmentedControl) {
         delegate?.budgieProfileHeaderReusableView!(self, segmentedControl: sender, didChangeSelectedIndex: sender.selectedSegmentIndex)
+    }
+    
+    func onPanGestureRecognizer(sender: UIPanGestureRecognizer) {
+        var alphaIncrement: CGFloat = 0.02
+        var velocity = sender.velocityInView(self)
+        var translation = sender.translationInView(self)
+        var location = sender.locationInView(self)
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            blurEffectView.alpha = 0.0
+            self.bannerImageView.clipsToBounds = false
+            self.parentCollectionView.clipsToBounds = false
+            self.clipsToBounds = false
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            println("Velocity: \(velocity)   Transalation: \(translation)")
+            if translation.y >  0 {
+                if velocity.y > 0 && blurEffectView.alpha < 1 {
+                    blurEffectView.alpha += alphaIncrement
+                    if self.scale < 3 {
+                        self.scale += 0.08
+                        self.blurEffectView.transform = CGAffineTransformMakeScale(self.scale, self.scale)
+                        self.bannerImageView.transform = CGAffineTransformMakeScale(self.scale, self.scale)
+                    }
+                } else if velocity.y < 0 && blurEffectView.alpha > 0 {
+                    blurEffectView.alpha -= alphaIncrement
+                    if scale > 1 {
+                        self.scale -= 0.08
+                        self.blurEffectView.transform = CGAffineTransformMakeScale(self.scale, self.scale)
+                        self.bannerImageView.transform = CGAffineTransformMakeScale(self.scale, self.scale)
+                    }
+                }
+            }
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            blurEffectView.alpha = 0.0
+            scale = 1
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.bannerImageView.transform = CGAffineTransformMakeScale(self.scale, self.scale)
+                self.blurEffectView.transform = CGAffineTransformMakeScale(self.scale, self.scale)
+            }, completion: { (success: Bool) -> Void in
+                self.bannerImageView.clipsToBounds = true
+                self.parentCollectionView.clipsToBounds = true
+                self.clipsToBounds = true
+            })
+
+        }
+        
     }
 
 }

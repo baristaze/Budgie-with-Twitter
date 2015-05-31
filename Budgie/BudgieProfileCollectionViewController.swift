@@ -25,6 +25,8 @@ class BudgieProfileCollectionViewController: UICollectionViewController, BudgieP
     private var didLoadUserTimeLine: Bool = false
     private var didLoadUsermedia: Bool = false
     private var didLoadFriendsList: Bool = false
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,7 @@ class BudgieProfileCollectionViewController: UICollectionViewController, BudgieP
         // Register cell classes
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
+
     
     func loadUserData() {
         MRProgressOverlayView.showOverlayAddedTo(self.view, title: "", mode: MRProgressOverlayViewMode.Indeterminate, animated: true)
@@ -151,6 +154,7 @@ extension BudgieProfileCollectionViewController: UICollectionViewDataSource {
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let supplementaryCell: BudgieProfileHeaderReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: reuseSupplementaryIdentifier, forIndexPath: indexPath) as! BudgieProfileHeaderReusableView
+        supplementaryCell.parentCollectionView = self.collectionView
         supplementaryCell.user = userForProfile
         supplementaryCell.scrollFrameWidth = self.view.frame.width
         supplementaryCell.delegate = self
@@ -284,7 +288,7 @@ extension BudgieProfileCollectionViewController: UICollectionViewDelegateFlowLay
     
 }
 
-// MARK: UIScrollViewDelegate
+// MARK: BudgieProfileHeaderReusableViewDelegate
 extension BudgieProfileCollectionViewController: BudgieProfileHeaderReusableViewDelegate {
     func budgieProfileHeaderReusableView(budgieProfileHeaderReusableView: BudgieProfileHeaderReusableView, segmentedControl: UISegmentedControl, didChangeSelectedIndex index: Int) {
         profileMenuSelectedIndex = index

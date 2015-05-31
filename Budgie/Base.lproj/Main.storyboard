@@ -1063,7 +1063,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="E04-td-Wmg" customClass="BudgieProfileHeaderReusableView" customModule="Budgie" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="E04-td-Wmg" customClass="BudgieProfileHeaderReusableView" customModule="Budgie" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="324"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -1077,8 +1077,17 @@
                                                 <constraint firstAttribute="height" constant="100" id="TxX-Y0-XKY"/>
                                             </constraints>
                                         </imageView>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMK-fX-jNj">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="whP-A8-xvc">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <blurEffect style="light"/>
+                                        </visualEffectView>
                                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="ZF7-eO-3kA">
                                             <rect key="frame" x="0.0" y="259" width="600" height="37"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="currentPageIndicatorTintColor" red="0.34509803919999998" green="0.56862745100000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </pageControl>
@@ -1180,11 +1189,13 @@
                                         <bool key="isElement" value="YES"/>
                                     </accessibility>
                                     <constraints>
+                                        <constraint firstItem="Irr-Cd-R5M" firstAttribute="bottom" secondItem="XMK-fX-jNj" secondAttribute="bottom" id="224-UM-4Nt"/>
                                         <constraint firstItem="RPS-qW-YkB" firstAttribute="top" secondItem="Irr-Cd-R5M" secondAttribute="bottom" id="6xo-bU-pv0"/>
                                         <constraint firstAttribute="bottom" secondItem="ypW-Tw-nNP" secondAttribute="bottom" id="Ekh-vR-l3U"/>
                                         <constraint firstItem="ZF7-eO-3kA" firstAttribute="leading" secondItem="sbE-68-J7i" secondAttribute="leading" id="IDn-c6-TYH"/>
                                         <constraint firstItem="ypW-Tw-nNP" firstAttribute="leading" secondItem="sbE-68-J7i" secondAttribute="leading" id="IxX-6F-hr3"/>
                                         <constraint firstItem="Irr-Cd-R5M" firstAttribute="top" secondItem="sbE-68-J7i" secondAttribute="top" id="JLB-yi-rL3"/>
+                                        <constraint firstItem="Irr-Cd-R5M" firstAttribute="width" secondItem="XMK-fX-jNj" secondAttribute="width" id="JgJ-fU-b18"/>
                                         <constraint firstAttribute="trailing" secondItem="RPS-qW-YkB" secondAttribute="trailing" id="MFN-mb-gS4"/>
                                         <constraint firstItem="Y0J-q6-2lf" firstAttribute="leading" secondItem="sbE-68-J7i" secondAttribute="leading" constant="8" id="PCA-P9-cOe"/>
                                         <constraint firstItem="Irr-Cd-R5M" firstAttribute="width" secondItem="sbE-68-J7i" secondAttribute="width" id="Qnn-nf-u1p"/>
@@ -1193,6 +1204,7 @@
                                         <constraint firstItem="ZF7-eO-3kA" firstAttribute="top" secondItem="RPS-qW-YkB" secondAttribute="bottom" id="VRT-Gp-Ake"/>
                                         <constraint firstItem="Y0J-q6-2lf" firstAttribute="top" secondItem="Irr-Cd-R5M" secondAttribute="bottom" constant="-40" id="g85-t7-gqK"/>
                                         <constraint firstAttribute="trailing" secondItem="ypW-Tw-nNP" secondAttribute="trailing" id="lYf-Tj-1WH"/>
+                                        <constraint firstItem="Irr-Cd-R5M" firstAttribute="height" secondItem="XMK-fX-jNj" secondAttribute="height" id="mqE-oW-hcK"/>
                                         <constraint firstAttribute="centerX" secondItem="ZF7-eO-3kA" secondAttribute="centerX" id="qFs-fI-DAf"/>
                                         <constraint firstAttribute="trailing" secondItem="ZF7-eO-3kA" secondAttribute="trailing" id="qg9-aS-433"/>
                                         <constraint firstItem="Irr-Cd-R5M" firstAttribute="leading" secondItem="sbE-68-J7i" secondAttribute="leading" id="rWQ-fK-Ei1"/>
@@ -1208,6 +1220,7 @@
                             </constraints>
                             <connections>
                                 <outlet property="bannerImageView" destination="Irr-Cd-R5M" id="Cpz-0A-eqM"/>
+                                <outlet property="blurEffectView" destination="XMK-fX-jNj" id="bag-JX-wgb"/>
                                 <outlet property="firstView" destination="Bbe-r3-yQJ" id="q2R-BE-DbK"/>
                                 <outlet property="followersCountLabel" destination="eoD-VD-yeO" id="bCa-7h-6pc"/>
                                 <outlet property="friendsCountLabel" destination="ZAP-dz-4z4" id="L0N-ed-Pab"/>
