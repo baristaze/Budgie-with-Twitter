@@ -61,6 +61,7 @@ Time spent: `21 hours` (Week-2) `21 hours` (Week-1)
 - [X] App saves last tweets requested (using NSUserDefaults) as timeline "placeHolders" in case the next time the App runs there is no conectivity
 - [X] Added activity indicators  (usign MRProgress Library) where Data Load is required
 - [X] Includes custom Launch Screen & App Icons for each device size
+- [X] Launch Screen includes animation. Budgie mascot scale up and eventually dissapear before displaying the HomeTimeLine
 
 (WEEK 1)
 - [X] Implemented simple pseudo-cache on Twitter Client to reduce number of calls to API
