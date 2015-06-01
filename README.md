@@ -2,7 +2,7 @@
 ## Twitter Client
 This is a Twitter client for iOS to read and compose tweets using the [Twitter API](https://apps.twitter.com/).
 
-Time spent: `21 hours` (Week-2) `21 hours` (Week-1) 
+Time spent: `25 hours` (Week-2) `21 hours` (Week-1) 
 
 ### Features
 
