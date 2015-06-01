@@ -30,11 +30,11 @@ Time spent: `21 hours` (Week-2) `21 hours` (Week-1)
 - [X] [Profile Page] Implements the paging view for the user description. (scroll horizontally)
 - [X] [Profile Page] As the paging view moves, the opacity of the content of the scroll view decreases. (I couldn't find the  mentioned effect on the actual twitter app so I did this one instead)
 - [X] [Profile Page] Pulling down the profile page should blur and resize the header image.
-- [ ] Account switching
-	- [ ] Long press on tab bar to bring up Account view with animation
-	- [ ] Tap account to switch to
-	- [ ] Include a plus button to Add an Account
-	- [ ] Swipe to delete an account 
+- [X] Account switching
+	- [X] Long press on tab bar to bring up Account view with animation
+	- [X] Tap account to switch to
+	- [X] Include a plus button to Add an Account
+	- [X] Swipe to delete an account 
 
 (WEEK 1)
 - [X] When composing, you should have a countdown in the upper right for the tweet limit.
@@ -54,7 +54,7 @@ Time spent: `21 hours` (Week-2) `21 hours` (Week-1)
 - [X] [Hamburger Menu] Added Bouncing effect when "opening/closing" the menu
 - [X] Tab Bar include links to: Home Timeline, Mentions, Search And Profile
 - [X] Added Mentions page similar to the Home Timeline
-- [X] Added Search Page
+- [X] [Search] Added Search Page
 	- [X] User can search both Tweets and Users (using a segmentedControl)
 - [X] [Twitter API] Added methods to: searchTweets, searchUsers, parseSearchQuery, requestFriendList, requestMentionTimeline, requestUserTimeline and requestUserMedia.
 - [X] Created custom.plist to store global constants (i.e. secret keys, consumer key, base url, url paths…)
