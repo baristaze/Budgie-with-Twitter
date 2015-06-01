@@ -75,9 +75,19 @@ Time spent: `25 hours` (Week-2) `21 hours` (Week-1)
 - [X] Added Profile Page displaying current user info (including banner image) and let's the user LogOut from the App.
 
 ### Walkthrough
+**GIF 1/3:** Hamburger Menu, HomeTimeLine view, Mentions view, Search view & LogOut/LogIng
 
-![Video Walkthrough]()
-![Video Walkthrough]()
+![Video Walkthrough](http://i.imgur.com/1Tt6QUd.gif)
+
+
+**GIF 2/3:** User Profile
+
+![Video Walkthrough](http://i.imgur.com/wbTVnbU.gif)
+
+
+**GIF 3/3:** Account Switching, Add Account, LongPress on Tab Bar & Click User Image to access Profile
+
+![Video Walkthrough](http://i.imgur.com/Ingx1AK.gif)
 
 Credits
 ---------
