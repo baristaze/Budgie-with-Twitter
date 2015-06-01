@@ -42,7 +42,11 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         var notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "reloadTableView", name: "shouldReloadTableViewNotification", object: nil)
 
+        var longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "onLongPress")
+        longPressRecognizer.minimumPressDuration = 1.5
         
+        
+        self.tabBarController?.tabBar.addGestureRecognizer(longPressRecognizer)
         
         self.navigationController?.navigationBar.barTintColor = UIColor.budgieBlue()
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "BudgieTitle"))
@@ -97,6 +101,12 @@ class BudgieHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tweets = [Tweet]()
         TwitterClient.sharedInstance.resetClient()
         loadTweets(newSearch)
+    }
+    
+    func onLongPress() {
+        var switchAccountVC = storyboard?.instantiateViewControllerWithIdentifier("SwitchAccounts") as! BudgieSwitchAccountsViewController
+        self.presentViewController(switchAccountVC, animated: true, completion: { () -> Void in
+        })
     }
     
     func loadTweets(params: Search!) {

@@ -220,18 +220,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
     
 
-    func loginWithCompletion(completion: BudgieUserResponse) {
-        loginCompletion = completion
 
-        TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
-        fetchRequestTokenWithPath(requestTokenPath, method: "POST", callbackURL: NSURL(string: "cptwitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
-            var authURL = NSURL(string: twitterBaseURL!.absoluteString! + authenticateReqTokenPath + "\(requestToken.token)" )
-            UIApplication.sharedApplication().openURL(authURL!)
-        }) { (error: NSError!) -> Void in
-            println("Failed to get request token")
-            self.loginCompletion?(success: false, user: nil, error: error)
-        }
-    }
     
     func resetClient() {
         oldestTweetId = nil
@@ -308,6 +297,19 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         
     }
     
+    func loginWithCompletion(completion: BudgieUserResponse) {
+        loginCompletion = completion
+        
+        TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
+        fetchRequestTokenWithPath(requestTokenPath, method: "POST", callbackURL: NSURL(string: "cptwitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
+            var authURL = NSURL(string: twitterBaseURL!.absoluteString! + authenticateReqTokenPath + "\(requestToken.token)" )
+            UIApplication.sharedApplication().openURL(authURL!)
+            }) { (error: NSError!) -> Void in
+                println("Failed to get request token")
+                self.loginCompletion?(success: false, user: nil, error: error)
+        }
+    }
+    
     func openURL(url: NSURL) {
 //        if url.scheme! == "cptwitterdemo" {
 //            if url.host! == "oauth" {
@@ -317,17 +319,18 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
 //                if oauthToken != nil && oauthVerifier != nil {
                     TwitterClient.sharedInstance.fetchAccessTokenWithPath(accessTokenPath, method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
                         TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
-                        
+
                         TwitterClient.sharedInstance.GET(verifyCredentialsPath, parameters: nil, success: { (operation: AFHTTPRequestOperation!, response:AnyObject!) -> Void in
                             var user = User(dictionary: response as! NSDictionary)
                             println("######################################################################################################")
                             println(response)
                             println("######################################################################################################")
                             User.currentUser = user
-//                            println(user.name!)
-//                            println(user.screenName!)
-//                            println(user.profileImageUrl!)
-//                            println(user.tagline!)
+                            
+                            //////////////////////
+                            self.saveUserToLoggedUsers(accessToken, response: response as! NSDictionary)
+                            //////////////////////
+                            
                             self.loginCompletion?(success: true, user: user, error: nil)
                             
                         }, failure: { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
@@ -343,6 +346,78 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
 //            } else { self.loginCompletion?(user: nil, error: nil) }
 //        } else { self.loginCompletion?(user: nil, error: nil) }
     }
+    
+    
+    
+    func deleteUserFromLoggedUsers(accountAtIndex: Int) {
+    
+        var loggedUsersArray: [NSDictionary]? = NSUserDefaults.standardUserDefaults().arrayForKey("loggedUsers") as? [NSDictionary]
+        
+        if loggedUsersArray != nil && (loggedUsersArray!.count - 1) >= accountAtIndex {
+            
+            loggedUsersArray!.removeAtIndex(accountAtIndex)
+        }
+        NSUserDefaults.standardUserDefaults().setObject(loggedUsersArray, forKey: "loggedUsers")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        if loggedUsersArray?.count == 0 {
+            User.currentUser?.logout()
+        }
+        
+    }
+    
+    
+    func saveUserToLoggedUsers(accessToken: BDBOAuth1Credential, response: NSDictionary) {
+        var user = User(dictionary: response)
+        var accessTokenData: NSData = NSKeyedArchiver.archivedDataWithRootObject(accessToken)
+        var currentUserData: NSData = NSJSONSerialization.dataWithJSONObject(response, options: nil, error: nil)!
+
+        var newLoggedUser: NSDictionary = ["userId": user.id!, "userData": currentUserData, "accessTokenData": accessTokenData]
+
+        var loggedUsersArray: [NSDictionary]? = NSUserDefaults.standardUserDefaults().arrayForKey("loggedUsers") as? [NSDictionary]
+        
+        if loggedUsersArray != nil {
+
+            var loggedUsersArrayTemp = loggedUsersArray!
+            
+            for item in loggedUsersArray! {
+                if (item["userId"] as! String) == user.id! {
+                    var itemIndex = find(loggedUsersArray!, item)
+                    loggedUsersArrayTemp.removeAtIndex(itemIndex!)
+                }
+            }
+            
+            loggedUsersArray = loggedUsersArrayTemp
+            loggedUsersArray?.insert(newLoggedUser, atIndex: 0)
+        } else {
+            loggedUsersArray = [newLoggedUser]
+        }
+        NSUserDefaults.standardUserDefaults().setObject(loggedUsersArray, forKey: "loggedUsers")
+        NSUserDefaults.standardUserDefaults().synchronize()
+
+    }
+    
+    func loadUsersFromLoggedUserArray(completion: (userIds: [String], accessTokens: [BDBOAuth1Credential], users: [User]) -> () ) {
+        var loggedUsersArrayRetrieved: [NSDictionary]? = NSUserDefaults.standardUserDefaults().arrayForKey("loggedUsers") as? [NSDictionary]
+        
+        var userIdArray = [String]()
+        var accessTokenArray = [BDBOAuth1Credential]()
+        var userArray = [User]()
+        
+        
+        for item in loggedUsersArrayRetrieved! {
+            var userId: String = item["userId"] as! String
+            var accessToken: BDBOAuth1Credential = NSKeyedUnarchiver.unarchiveObjectWithData(item["accessTokenData"] as! NSData) as! BDBOAuth1Credential
+            var userDic = NSJSONSerialization.JSONObjectWithData(item["userData"] as! NSData, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+            var user = User(dictionary: userDic)
+            
+            userIdArray.append(userId)
+            accessTokenArray.append(accessToken)
+            userArray.append(user)
+        }
+        completion(userIds: userIdArray, accessTokens: accessTokenArray, users: userArray)
+    }
+    
     
     func requestRateLimitStatus(completion: (success: Bool) -> ()) {
         GET(rateLimitStatusPath, parameters: ["resources": "statuses,account,favorites"], success: { (operation:AFHTTPRequestOperation!, response:AnyObject!) -> Void in

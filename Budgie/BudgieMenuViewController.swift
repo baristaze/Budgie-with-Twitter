@@ -180,7 +180,10 @@ extension BudgieMenuViewController: UITableViewDelegate {
                 self.tabBarController?.selectedIndex = 2
             }
         } else if indexPath.row == 3 {  // Switch Accounts
-            println("Switch Accounts")
+            var switchAccountVC = storyboard?.instantiateViewControllerWithIdentifier("SwitchAccounts") as! BudgieSwitchAccountsViewController
+            self.presentViewController(switchAccountVC, animated: true, completion: { () -> Void in
+                
+            })
         } else if indexPath.row == 4 {  // Settings
             println("Settings")
         } else if indexPath.row == 5 {  // LogOut

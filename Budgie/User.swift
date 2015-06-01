@@ -14,6 +14,7 @@ var userDidLoginNotification = "userDidLoginNotification"
 var userDidLogoutNotification = "userDidLogoutNotification"
 
 class User: NSObject {
+    var id: String?
     var name: String?
     var screenName: String?
     var profileImageUrl: String?
@@ -28,6 +29,7 @@ class User: NSObject {
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
+        id = dictionary["id_str"] as? String
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
         profileImageUrl = dictionary["profile_image_url"] as? String
@@ -45,7 +47,14 @@ class User: NSObject {
     func logout() {
         User.currentUser = nil
         TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
-        
+        TwitterClient.sharedInstance.deauthorize()
+        NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
+    }
+    
+    func switchUser(accessToken: BDBOAuth1Credential, newUser: User) {
+        User.currentUser = newUser
+        TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
+        TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
     

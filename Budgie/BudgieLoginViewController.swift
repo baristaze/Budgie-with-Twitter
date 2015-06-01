@@ -49,6 +49,14 @@ class BudgieLoginViewController: UIViewController {
             loginImage.alpha = 1
         }
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        if User.currentUser != nil {
+            self.performSegueWithIdentifier("loginSegue", sender: self)
+        }
+
+    }
 
 
 }
